@@ -7,26 +7,28 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
+import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
 
 
 class FieldworkActivity : AppCompatActivity(), AnkoLogger {
 
-  val fieldworks = ArrayList<FieldworkModel>()
+
   var fieldwork = FieldworkModel()
+  lateinit var app: MainApp
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork)
-    info("Fieldwork Activity started..")
+    app=application as MainApp
 
     btnAdd.setOnClickListener() {
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()
       if (fieldwork.title.isNotEmpty() && fieldwork.description.isNotEmpty()) {
-        info("array: $fieldworks")
-        fieldworks.forEach { info("add Button Pressed: ${it.title}")}
-        fieldworks.add(fieldwork.copy())
+       app!!.fieldworks.add(fieldwork.copy())
+        info("add Button Pressed: $fieldworkTitle")
+        app!!.fieldworks.forEach {info("add Button Pressed: ${it}")}
       }
       else {
         toast ("Please Enter a title")
