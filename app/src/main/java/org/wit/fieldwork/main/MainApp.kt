@@ -13,8 +13,8 @@ class MainApp : Application(), AnkoLogger {
     super.onCreate()
     info("Fieldmark started")
 
-    fieldworks.add(FieldworkModel("One", "About one..."))
-    fieldworks.add(FieldworkModel("One", "About one..."))
+    //fieldworks.add(FieldworkModel("One", "About one..."))
+   // fieldworks.add(FieldworkModel("One", "About one..."))
 
   }
 }
