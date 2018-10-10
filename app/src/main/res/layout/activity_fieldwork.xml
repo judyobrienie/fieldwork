@@ -5,7 +5,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="org.wit.fieldwork.FieldworkActivity">
+  tools:context="org.wit.fieldwork.activities.FieldworkActivity">
 
   <RelativeLayout
     android:layout_width="match_parent"
@@ -50,6 +50,20 @@
           android:padding="8dp"
           android:textColor="@color/colorPrimaryDark"
           android:textSize="14sp"/>
+
+        <android.support.design.widget.TextInputEditText
+          android:id="@+id/fieldworkDescription"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:hint="@string/hint_fieldworkTitle"
+          android:inputType="text"
+          android:maxLength="25"
+          android:maxLines="1"
+          android:padding="8dp"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="14sp"/>
+
 
         <Button
           android:id="@+id/btnAdd"
