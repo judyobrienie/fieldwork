@@ -12,5 +12,9 @@ class MainApp : Application(), AnkoLogger {
   override fun onCreate() {
     super.onCreate()
     info("Fieldmark started")
+
+    fieldworks.add(FieldworkModel("One", "About one..."))
+    fieldworks.add(FieldworkModel("One", "About one..."))
+
   }
 }
