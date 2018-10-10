@@ -27,25 +27,34 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     setSupportActionBar(toolbarAdd)
     app=application as MainApp
 
-
+    var edit = false
     if(intent.hasExtra("hillfort_edit")) {
+      edit=true
       fieldwork = intent.extras.getParcelable<FieldworkModel>("hillfort_edit")
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()
+      btnAdd.setText(R.string.button_savePlacemark)
     }
 
     btnAdd.setOnClickListener() {
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()
-      if (fieldwork.title.isNotEmpty() && fieldwork.description.isNotEmpty()) {
-       app!!.fieldworks.create(fieldwork.copy())
-        info("add Button Pressed: $fieldworkTitle")
 
+      if (fieldwork.title.isNotEmpty()) {
+        if (edit){
+          btnAdd.setText(R.string.button_savePlacemark)
+          app.fieldworks.update(fieldwork.copy())
+        }
+        else{
+          app.fieldworks.create(fieldwork.copy())
+        }
+        //set result of activity
         setResult(AppCompatActivity.RESULT_OK)
+        //if button pressed again then finish
         finish()
       }
       else {
-        toast ("Please Enter a title")
+        toast (R.string.hint_enterATitle)
       }
     }
 
