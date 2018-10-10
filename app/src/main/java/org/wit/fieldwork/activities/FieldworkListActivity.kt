@@ -12,6 +12,7 @@ import org.wit.fieldwork.models.FieldworkModel
 import kotlinx.android.synthetic.main.activity_fieldwork_list.*
 import kotlinx.android.synthetic.main.card_fieldwork.view.*
 import org.jetbrains.anko.startActivityForResult
+import org.wit.fieldwork.adapters.FieldworkAdapter
 
 class FieldworkListActivity : AppCompatActivity() {
 
@@ -42,28 +43,7 @@ class FieldworkListActivity : AppCompatActivity() {
   }
 
 }
-  class FieldworkAdapter constructor(private var fieldworks: List<FieldworkModel>) : RecyclerView.Adapter<FieldworkAdapter.MainHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-      return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_fieldwork, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: MainHolder, position: Int) {
-      val fieldwork = fieldworks[holder.adapterPosition]
-      holder.bind(fieldwork)
-    }
-
-    override fun getItemCount(): Int = fieldworks.size
-
-    class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-      fun bind(fieldwork: FieldworkModel) {
-        itemView.fieldworkTitle.text = fieldwork.title
-        itemView.fieldworkDescription.text = fieldwork.description
-      }
-    }
 
 
 
 
-  }
