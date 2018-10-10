@@ -28,6 +28,12 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     app=application as MainApp
 
 
+    if(intent.hasExtra("hillfort_edit")) {
+      fieldwork = intent.extras.getParcelable<FieldworkModel>("hillfort_edit")
+      fieldwork.title = fieldworkTitle.text.toString()
+      fieldwork.description = fieldworkDescription.text.toString()
+    }
+
     btnAdd.setOnClickListener() {
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()

@@ -47,7 +47,7 @@ class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
 
 
   override fun onFieldworkClick(fieldwork: FieldworkModel) {
-    startActivityForResult(intentFor<FieldworkActivity>(), 0)
+    startActivityForResult(intentFor<FieldworkActivity>().putExtra("hillfort_edit",fieldwork), 0)
   }
 }
 
