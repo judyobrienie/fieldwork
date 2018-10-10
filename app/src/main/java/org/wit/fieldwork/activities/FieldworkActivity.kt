@@ -32,9 +32,9 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()
       if (fieldwork.title.isNotEmpty() && fieldwork.description.isNotEmpty()) {
-       app!!.fieldworks.add(fieldwork.copy())
+       app!!.fieldworks.create(fieldwork.copy())
         info("add Button Pressed: $fieldworkTitle")
-        app!!.fieldworks.forEach {info("add Button Pressed: ${it}")}
+       
         setResult(AppCompatActivity.RESULT_OK)
         finish()
       }

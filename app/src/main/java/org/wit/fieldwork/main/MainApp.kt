@@ -7,7 +7,7 @@ import org.wit.fieldwork.models.FieldworkModel
 
 class MainApp : Application(), AnkoLogger {
 
-  val fieldworks = ArrayList<FieldworkModel>()
+  val fieldworks = FieldmarkMemStore()
 
   override fun onCreate() {
     super.onCreate()

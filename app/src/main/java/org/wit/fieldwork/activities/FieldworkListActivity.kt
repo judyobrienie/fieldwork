@@ -27,7 +27,7 @@ class FieldworkListActivity : AppCompatActivity() {
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = FieldworkAdapter(app.fieldworks)
+    recyclerView.adapter = FieldworkAdapter(app.fieldworks.finalall())
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
