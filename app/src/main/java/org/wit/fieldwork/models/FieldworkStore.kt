@@ -5,5 +5,5 @@ interface FieldworkStore {
   fun create(fieldwork: FieldworkModel)
 
   // to allow us to edit placemark
-  //fun update(fieldwork: FieldworkModel)
+  fun update(fieldwork: FieldworkModel)
 }
