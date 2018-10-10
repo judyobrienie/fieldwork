@@ -1,3 +1,5 @@
 <resources>
-  <string name="app_name">Fieldwork</string>
+  <string name="app_name">Atlas of Hillforts</string>
+  <string name="hint_fieldworkTitle">Hillfort Name</string>
+  <string name="button_addFieldwork">Add Hillfort</string>
 </resources>
