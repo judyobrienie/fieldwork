@@ -19,11 +19,25 @@ class FieldworkListActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork_list)
+    toolbarMain.title = title
+    setSupportActionBar(toolbarMain)
     app = application as MainApp
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = FieldworkAdapter(app.fieldworks)
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    when (item?.itemId) {
+      R.id.item_add -> startActivityForResult<PlacemarkActivity>(0)
+    }
+    return super.onOptionsItemSelected(item)
   }
 
 }
@@ -47,5 +61,8 @@ class FieldworkListActivity : AppCompatActivity() {
         itemView.fieldworkDescription.text = fieldwork.description
       }
     }
+
+
+
 
   }

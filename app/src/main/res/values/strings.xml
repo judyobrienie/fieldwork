@@ -3,4 +3,5 @@
   <string name="hint_fieldworkTitle">Hillfort Name</string>
   <string name="hint_fieldworkDescription">Hillfort Description</string>
   <string name="button_addFieldwork">Add Hillfort</string>
+  <string name="menu_addFieldmark">Add</string>
 </resources>
