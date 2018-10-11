@@ -29,6 +29,7 @@ class FieldworkMemStore : FieldworkStore, AnkoLogger {
     if (foundFieldwork != null) {
       foundFieldwork.title = fieldwork.title
       foundFieldwork.description = fieldwork.description
+      foundFieldwork.image = fieldwork.image
       logAll()
     }
   }

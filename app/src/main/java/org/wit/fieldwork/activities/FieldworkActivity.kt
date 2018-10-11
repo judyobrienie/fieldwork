@@ -1,5 +1,6 @@
 package org.wit.fieldwork.activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
+import org.wit.fieldwork.helpers.readImage
+import org.wit.fieldwork.helpers.readImageFromPath
 import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
@@ -23,9 +26,7 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
 
   override fun onCreate(savedInstanceState: Bundle?) {
 
-    chooseImage.setOnClickListener{
-      showImagePicker(this, IMAGE_REQUEST)
-    }
+
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork)
     //set new toobar
@@ -40,6 +41,12 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()
       btnAdd.setText(R.string.button_savePlacemark)
+      fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.image))
+
+    }
+
+    chooseImage.setOnClickListener{
+      showImagePicker(this, IMAGE_REQUEST)
     }
 
     btnAdd.setOnClickListener() {
@@ -49,6 +56,7 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       if (fieldwork.title.isNotEmpty()) {
         if (edit){
           btnAdd.setText(R.string.button_savePlacemark)
+          chooseImage.setText(R.string.button_saveImage)
           app.fieldworks.update(fieldwork.copy())
         }
         else{
@@ -83,5 +91,17 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     return super.onOptionsItemSelected(item)
   }
 
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    when (requestCode) {
+      IMAGE_REQUEST -> {
+        if (data != null) {
+          fieldwork.image = data.getData().toString()
+          fieldworkImage.setImageBitmap(readImage(this, resultCode, data))
+        }
+      }
+    }
+  }
 
 }
