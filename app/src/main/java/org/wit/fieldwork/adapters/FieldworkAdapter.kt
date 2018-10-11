@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_fieldwork.view.*
 
 import org.wit.fieldwork.R
+import org.wit.fieldwork.helpers.readImageFromPath
 import org.wit.fieldwork.models.FieldworkModel
 
 interface FieldworkListener {
@@ -31,6 +32,8 @@ class FieldworkAdapter constructor(private var fieldworks: List<FieldworkModel>,
     fun bind(fieldwork:FieldworkModel, listener: FieldworkListener){
     itemView.fieldworkTitle.text=fieldwork.title
     itemView.fieldworkDescription.text=fieldwork.description
+      //adding an image to view
+      itemView.placemarkImage.setImageBitmap(readImageFromPath(itemView.context, fieldwork.image))
       itemView.setOnClickListener { listener.onFieldworkClick(fieldwork) }
     }
     }
