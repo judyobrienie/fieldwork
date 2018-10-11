@@ -9,6 +9,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
+import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
 
@@ -18,8 +19,13 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
 
   var fieldwork = FieldworkModel()
   lateinit var app: MainApp
+  val IMAGE_REQUEST = 1
 
   override fun onCreate(savedInstanceState: Bundle?) {
+
+    chooseImage.setOnClickListener{
+      showImagePicker(this, IMAGE_REQUEST)
+    }
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork)
     //set new toobar
