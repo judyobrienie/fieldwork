@@ -41,6 +41,7 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()
       btnAdd.setText(R.string.button_savePlacemark)
+      chooseImage.setText(R.string.button_saveImage)
       fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.image))
 
     }
@@ -56,7 +57,6 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       if (fieldwork.title.isNotEmpty()) {
         if (edit){
           btnAdd.setText(R.string.button_savePlacemark)
-          chooseImage.setText(R.string.button_saveImage)
           app.fieldworks.update(fieldwork.copy())
         }
         else{
