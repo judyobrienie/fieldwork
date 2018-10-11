@@ -10,4 +10,5 @@
   <string name="menu_addFieldwork">Add</string>
 
   <string name="hint_enterATitle">Please Enter a title</string>
+  <string name="button_addImage"> Add Image </string>
 </resources>
