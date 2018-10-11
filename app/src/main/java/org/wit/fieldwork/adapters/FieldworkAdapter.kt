@@ -33,7 +33,7 @@ class FieldworkAdapter constructor(private var fieldworks: List<FieldworkModel>,
     itemView.fieldworkTitle.text=fieldwork.title
     itemView.fieldworkDescription.text=fieldwork.description
       //adding an image to view
-      itemView.placemarkImage.setImageBitmap(readImageFromPath(itemView.context, fieldwork.image))
+      itemView.fieldworkImage.setImageBitmap(readImageFromPath(itemView.context, fieldwork.image))
       itemView.setOnClickListener { listener.onFieldworkClick(fieldwork) }
     }
     }
