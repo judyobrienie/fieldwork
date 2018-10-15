@@ -2,15 +2,15 @@
   <string name="app_name">Atlas of Hillforts</string>
   <string name="hint_fieldworkTitle">Hillfort Name</string>
   <string name="hint_fieldworkDescription">Hillfort Description</string>
-
   <string name="button_addFieldwork">Add Hillfort</string>
-  <string name="button_savePlacemark">Save Hillfort/Description</string>
-
+  <string name="button_saveFieldwork">Save Hillfort/Description</string>
   <string name="menu_cancelFieldwork">Cancel</string>
   <string name="menu_addFieldwork">Add</string>
-
   <string name="hint_enterATitle">Please Enter a title</string>
   <string name="button_addImage"> Add Image </string>
   <string name="select_fieldwork_image">Select hillfort image</string>
   <string name="button_saveImage">Change Image</string>
+  <string name="button_location">Set Location</string>
+  <string name="title_activity_maps">Map</string>
+
 </resources>
