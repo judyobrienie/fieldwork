@@ -111,6 +111,13 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       R.id.item_cancel ->
         finish()
     }
+    when (item?.itemId) {
+      //when cancel is pressed finish
+      R.id.item_delete -> {
+        app.fieldworks.delete(fieldwork)
+        finish()
+        }
+    }
     return super.onOptionsItemSelected(item)
   }
 
