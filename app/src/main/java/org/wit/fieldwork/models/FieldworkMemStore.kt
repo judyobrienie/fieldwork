@@ -37,6 +37,11 @@ class FieldworkMemStore : FieldworkStore, AnkoLogger {
     }
   }
 
+  override fun delete(placemark: FieldworkModel) {
+    fieldworks.remove(placemark)
+  }
+
+
   fun logAll() {
     fieldworks.forEach{ info("${it}") }
   }

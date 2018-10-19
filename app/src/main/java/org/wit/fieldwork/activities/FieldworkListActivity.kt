@@ -21,16 +21,27 @@ class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
 
   lateinit var app: MainApp
 
+  private fun loadFieldworks() {
+    showFieldworks(app.fieldworks.findAll())
+  }
+
+  fun showFieldworks (fieldworks: List<FieldworkModel>) {
+    recyclerView.adapter = FieldworkAdapter(fieldworks, this)
+    recyclerView.adapter?.notifyDataSetChanged()
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork_list)
+    app = application as MainApp
+
     toolbarMain.title = title
     setSupportActionBar(toolbarMain)
-    app = application as MainApp
+
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = FieldworkAdapter(app.fieldworks.findAll(),this)
+    loadFieldworks()
   }
 
 
@@ -52,7 +63,7 @@ class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    recyclerView.adapter?.notifyDataSetChanged()
+    loadFieldworks()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }

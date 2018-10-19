@@ -3,19 +3,19 @@ package org.wit.fieldwork.main
 import android.app.Application
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.wit.fieldwork.models.FieldworkJSONStore
 import org.wit.fieldwork.models.FieldworkMemStore
-import org.wit.fieldwork.models.FieldworkModel
+import org.wit.fieldwork.models.FieldworkStore
 
 class MainApp : Application(), AnkoLogger {
 
-  val fieldworks = FieldworkMemStore()
+  lateinit var fieldworks: FieldworkStore
 
   override fun onCreate() {
     super.onCreate()
-    info("Fieldmark started")
+    fieldworks = FieldworkJSONStore(applicationContext)
+    //fieldworks = FieldworkMemStore()
 
-    //fieldworks.add(FieldworkModel("One", "About one..."))
-   // fieldworks.add(FieldworkModel("One", "About one..."))
-
+    info("Fieldwork Started")
   }
 }
