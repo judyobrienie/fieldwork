@@ -26,7 +26,7 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
   lateinit var app: MainApp
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
-  var location = Location(52.245696, -7.139102, 15f)
+ // var location = Location(52.245696, -7.139102, 15f)
 
   override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -51,9 +51,9 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.image))
 
       //setting location
-      location.lat = fieldwork.lat
-      location.lng = fieldwork.lng
-      location.zoom = fieldwork.zoom
+     // location.lat = fieldwork.lat
+     // location.lng = fieldwork.lng
+     // location.zoom = fieldwork.zoom
 
    //   }
     }
@@ -63,6 +63,12 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     }
 
     fieldworkLocation.setOnClickListener {
+      val location = Location(52.245696, -7.139102, 15f)
+      if (fieldwork.zoom != 0f) {
+        location.lat =  fieldwork.lat
+        location.lng = fieldwork.lng
+        location.zoom = fieldwork.zoom
+      }
       startActivityForResult(intentFor<MapsActivity>().putExtra("location", location), LOCATION_REQUEST)
     }
 
@@ -121,7 +127,7 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       }
       LOCATION_REQUEST -> {
         if (data != null) {
-          location = data.extras.getParcelable<Location>("location")
+          val location = data.extras.getParcelable<Location>("location")
           fieldwork.lat = location.lat
           fieldwork.lng = location.lng
           fieldwork.zoom = location.zoom
