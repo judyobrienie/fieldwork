@@ -33,9 +33,15 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
 
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork)
+
     //set new toobar
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
+
+
+    supportActionBar!!.title = "Go Back"
+    supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
     app = application as MainApp
 
     var edit = false
