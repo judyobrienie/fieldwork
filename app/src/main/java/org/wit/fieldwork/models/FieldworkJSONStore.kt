@@ -46,7 +46,7 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
     if (foundFieldwork != null) {
       foundFieldwork.title = fieldwork.title
       foundFieldwork.description = fieldwork.description
-      foundFieldwork.image = fieldwork.image
+      foundFieldwork.images = fieldwork.images
       foundFieldwork.lng = fieldwork.lng
       foundFieldwork.lat = fieldwork.lat
       foundFieldwork.zoom = fieldwork.zoom

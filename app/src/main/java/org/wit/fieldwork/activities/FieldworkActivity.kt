@@ -1,6 +1,7 @@
 package org.wit.fieldwork.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -17,6 +18,12 @@ import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.models.Location
+import android.R.attr.data
+import android.content.ClipData
+import android.R.attr.data
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
 
 
 class FieldworkActivity : AppCompatActivity(), AnkoLogger {
@@ -54,7 +61,15 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       if (fieldwork.image != null) {
         chooseImage.setText(R.string.button_saveImage)
       }
-      fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.image))
+      for (item in fieldwork.images) {
+        var imageView = ImageView(applicationContext)
+ var linearLayout = LinearLayout(this);
+        imageView.setImageBitmap(readImageFromPath(this, item))
+        linearLayout.addView(imageView)
+//make visible to program
+//        setContentView(linearLayout)
+//        fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images[0]))
+      }
 
       //setting location
      // location.lat = fieldwork.lat
@@ -132,12 +147,33 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     super.onActivityResult(requestCode, resultCode, data)
     when (requestCode) {
       IMAGE_REQUEST -> {
+
         if (data != null) {
-          fieldwork.image = data.getData().toString()
-          fieldworkImage.setImageBitmap(readImage(this, resultCode, data))
           chooseImage.setText(R.string.button_saveImage)
+
+          val imagesPath = data.clipData  /// multiple images
+          if (imagesPath != null) {
+            fieldwork.images.clear()
+            for (i in 0 until data.clipData.itemCount) {
+              val uri = data.clipData.getItemAt(i).uri.toString()
+              fieldwork.images.add(uri)
+              fieldwork.image = fieldwork.images[0].toString()
+              fieldworkImage.setImageBitmap(readImage(this, resultCode, data))
+            }
+
+          }
+            else{ //single image
+            val uri = data?.data.toString()
+            fieldwork.images.clear()
+            fieldwork.images.add(uri)
+            fieldwork.image = data.getData().toString()
+           
+            fieldworkImage.setImageBitmap(readImage(this, resultCode, data))
+            }
+         }
         }
-      }
+
+
       LOCATION_REQUEST -> {
         if (data != null) {
           val location = data.extras.getParcelable<Location>("location")
