@@ -1,7 +1,6 @@
 package org.wit.fieldwork.activities
 
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -18,12 +17,6 @@ import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.models.Location
-import android.R.attr.data
-import android.content.ClipData
-import android.R.attr.data
-import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
 
 
 class FieldworkActivity : AppCompatActivity(), AnkoLogger {
@@ -41,6 +34,8 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork)
 
+
+
     //set new toobar
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
@@ -50,6 +45,8 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
     app = application as MainApp
+
+
 
     var edit = false
     if (intent.hasExtra("hillfort_edit")) {
@@ -61,23 +58,38 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
       if (fieldwork.image != null) {
         chooseImage.setText(R.string.button_saveImage)
       }
-      for (item in fieldwork.images) {
-        var imageView = ImageView(applicationContext)
- var linearLayout = LinearLayout(this);
-        imageView.setImageBitmap(readImageFromPath(this, item))
-        linearLayout.addView(imageView)
-//make visible to program
-//        setContentView(linearLayout)
-//        fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images[0]))
+
+//
+// imges from array of images
+      if (fieldwork.images.size == 1) {
+        fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+      }
+      if (fieldwork.images.size == 2) {
+        fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+        fieldworkImage2.setImageBitmap(readImageFromPath(this, fieldwork.images.get(1)))
+      }
+      if (fieldwork.images.size == 3) {
+        fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+        fieldworkImage2.setImageBitmap(readImageFromPath(this, fieldwork.images.get(1)))
+        fieldworkImage3.setImageBitmap(readImageFromPath(this, fieldwork.images.get(2)))
+      }
+      if (fieldwork.images.size == 4) {
+        fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+        fieldworkImage2.setImageBitmap(readImageFromPath(this, fieldwork.images.get(1)))
+        fieldworkImage3.setImageBitmap(readImageFromPath(this, fieldwork.images.get(2)))
+        fieldworkImage4.setImageBitmap(readImageFromPath(this, fieldwork.images.get(3)))
       }
 
-      //setting location
-     // location.lat = fieldwork.lat
-     // location.lng = fieldwork.lng
-     // location.zoom = fieldwork.zoom
 
-   //   }
-    }
+//        Debugging
+
+info("images: " + fieldwork.images.toString())
+info("images: " + fieldwork.images.get(0))
+info("images: " + readImageFromPath(this, fieldwork.images.get(0)))
+
+    } //end of edit
+
+
 
     chooseImage.setOnClickListener {
       showImagePicker(this, IMAGE_REQUEST)
@@ -155,20 +167,44 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
           if (imagesPath != null) {
             fieldwork.images.clear()
             for (i in 0 until data.clipData.itemCount) {
-              val uri = data.clipData.getItemAt(i).uri.toString()
-              fieldwork.images.add(uri)
-              fieldwork.image = fieldwork.images[0].toString()
-              fieldworkImage.setImageBitmap(readImage(this, resultCode, data))
+              val uri = data.clipData.getItemAt(i).uri
+              fieldwork.images.add(uri.toString())
+//
             }
+
+            if (fieldwork.images.size == 1) {
+              fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+            }
+            if (fieldwork.images.size == 2) {
+              fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+              fieldworkImage2.setImageBitmap(readImageFromPath(this, fieldwork.images.get(1)))
+            }
+            if (fieldwork.images.size == 3) {
+              fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+              fieldworkImage2.setImageBitmap(readImageFromPath(this, fieldwork.images.get(1)))
+              fieldworkImage3.setImageBitmap(readImageFromPath(this, fieldwork.images.get(2)))
+            }
+            if (fieldwork.images.size == 4) {
+              fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.images.get(0)))
+              fieldworkImage2.setImageBitmap(readImageFromPath(this, fieldwork.images.get(1)))
+              fieldworkImage3.setImageBitmap(readImageFromPath(this, fieldwork.images.get(2)))
+              fieldworkImage4.setImageBitmap(readImageFromPath(this, fieldwork.images.get(3)))
+            }
+
+            //testing image loading
+            //fieldworkImage.setImageBitmap(readImage(this, resultCode, data.clipData.getItemAt(0).uri))
+           // fieldworkImage2.setImageBitmap(readImage(this, resultCode, data.clipData.getItemAt(1).uri))
+           // fieldworkImage3.setImageBitmap(readImage(this, resultCode, data.clipData.getItemAt(2).uri))
+           // fieldworkImage4.setImageBitmap(readImage(this, resultCode, data.clipData.getItemAt(3).uri))
 
           }
             else{ //single image
-            val uri = data?.data.toString()
+            val uri = data?.data
             fieldwork.images.clear()
-            fieldwork.images.add(uri)
+            fieldwork.images.add(uri.toString())
             fieldwork.image = data.getData().toString()
-           
-            fieldworkImage.setImageBitmap(readImage(this, resultCode, data))
+
+            fieldworkImage.setImageBitmap(readImage(this, resultCode, uri))
             }
          }
         }
