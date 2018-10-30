@@ -273,7 +273,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         val intent = Intent(baseContext, FieldworkListActivity::class.java)
         startActivity(intent)
-        toast("You are Signed in Successfuclly")
+        toast("You are Signed in Successfully")
 
       } else {
         password.error = getString(R.string.error_incorrect_password)

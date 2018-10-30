@@ -24,6 +24,9 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/fieldworkTitle"/>
 
+
+
+
     <ImageView
       android:id="@+id/fieldworkImage"
       android:layout_width="64dp"
