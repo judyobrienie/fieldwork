@@ -7,4 +7,10 @@
     android:icon="@android:drawable/ic_menu_add"
     android:title="@string/menu_addFieldwork"
     app:showAsAction="always"/>
+
+  <item
+    android:id="@+id/item_logout"
+    android:icon="@android:drawable/btn_dialog"
+    android:title="@string/button_logout"
+    app:showAsAction="always" />
 </menu>
