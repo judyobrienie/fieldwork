@@ -269,7 +269,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
       showProgress(false)
 
       if (success!!) {
-       // finish()
 
         val intent = Intent(baseContext, FieldworkListActivity::class.java)
         startActivity(intent)

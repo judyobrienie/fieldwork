@@ -14,8 +14,10 @@ import kotlinx.android.synthetic.main.activity_fieldwork_list.*
 import kotlinx.android.synthetic.main.card_fieldwork.view.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.toast
 import org.wit.fieldwork.adapters.FieldworkAdapter
 import org.wit.fieldwork.adapters.FieldworkListener
+import org.jetbrains.anko.toast
 
 class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
 
@@ -54,8 +56,13 @@ class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
     when (item?.itemId) {
       R.id.item_add -> startActivityForResult<FieldworkActivity>(0)
     }
+    when (item?.itemId) {
+      R.id.item_logout -> finish()
+
+    }
     return super.onOptionsItemSelected(item)
   }
+
 
 
   override fun onFieldworkClick(fieldwork: FieldworkModel) {
