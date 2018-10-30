@@ -3,6 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/constraintLayout"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".activities.FieldworkActivity">
@@ -63,6 +64,20 @@
           android:padding="8dp"
           android:textColor="@color/colorPrimaryDark"
           android:textSize="14sp"/>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent">
+          <CheckBox android:id="@+id/checkbox_meat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visited"
+            android:onClick="onCheckboxClicked"/>
+
+        </LinearLayout>
+
 
         <Button
           android:id="@+id/chooseImage"
@@ -125,6 +140,8 @@
 
 
         </HorizontalScrollView>
+
+
 
 
         <Button

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_fieldwork.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -17,6 +18,11 @@ import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.models.Location
+import android.widget.CheckBox
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 
 
 class FieldworkActivity : AppCompatActivity(), AnkoLogger {
@@ -45,6 +51,7 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
     app = application as MainApp
+
 
 
 
@@ -95,6 +102,7 @@ info("images: " + readImageFromPath(this, fieldwork.images.get(0)))
       showImagePicker(this, IMAGE_REQUEST)
     }
 
+
     fieldworkLocation.setOnClickListener {
       val location = Location(52.245696, -7.139102, 15f)
       if (fieldwork.zoom != 0f) {
@@ -128,6 +136,26 @@ info("images: " + readImageFromPath(this, fieldwork.images.get(0)))
       }
     }
 
+  }
+
+
+
+  //checkbox
+  fun onCheckboxClicked(view: View) {
+    if (view is CheckBox) {
+      val checked: Boolean = view.isChecked
+
+      when (view.id) {
+        R.id.checkbox_meat -> {
+          if (checked) {
+            // Put some meat on the sandwich
+          } else {
+            // Remove the meat
+          }
+        }
+
+      }
+    }
   }
 
 

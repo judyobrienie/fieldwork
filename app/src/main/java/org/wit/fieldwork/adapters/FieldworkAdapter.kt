@@ -3,6 +3,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.card_fieldwork.view.*
 
 import org.wit.fieldwork.R
@@ -32,6 +33,8 @@ class FieldworkAdapter constructor(private var fieldworks: List<FieldworkModel>,
     fun bind(fieldwork:FieldworkModel, listener: FieldworkListener){
     itemView.fieldworkTitle.text=fieldwork.title
     itemView.fieldworkDescription.text=fieldwork.description
+
+
 
       //adding an image to view
       itemView.fieldworkImage.setImageBitmap(readImageFromPath(itemView.context, fieldwork.images[0]))
