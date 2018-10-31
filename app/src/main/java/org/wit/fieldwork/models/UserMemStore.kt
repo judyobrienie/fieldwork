@@ -11,13 +11,19 @@ internal fun getid(): Long {
 }
 
 class UserMemStore : UserStore, AnkoLogger {
+  override fun findByEmail(email: String): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun authenticate(email: String, password: String): UserModel? {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 
   val users = ArrayList<UserModel>()
 
   override fun findAll(): List<UserModel> {
     return users
   }
-
 
   override fun create(user: UserModel) {
     user.idUser=getid()

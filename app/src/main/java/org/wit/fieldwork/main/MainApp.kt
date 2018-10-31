@@ -10,7 +10,7 @@ class MainApp : Application(), AnkoLogger {
 
   lateinit var fieldworks: FieldworkStore
   lateinit var users: UserStore
-
+  var loggedInUser = UserModel()
 
 
   override fun onCreate() {

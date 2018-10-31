@@ -8,7 +8,6 @@ import org.jetbrains.anko.AnkoLogger
 import org.wit.fieldwork.helpers.exists
 import org.wit.fieldwork.helpers.read
 import org.wit.fieldwork.helpers.write
-
 import java.util.*
 
 
@@ -54,6 +53,29 @@ class UserJSONStore : UserStore, AnkoLogger {
       foundUser.password = user.password
 
       serialize()
+    }
+  }
+
+  override fun findByEmail(email: String): Boolean {
+    var foundUser: UserModel? = users.find { h -> h.email == email }
+    return if (foundUser != null) {
+      true
+    } else {
+      return false
+    }
+  }
+
+  override fun authenticate(email: String, password: String): UserModel? {
+    var foundUser: UserModel? = users.find { h -> h.email == email }
+
+    if (foundUser != null) {
+      if (foundUser.password == password) {
+        return foundUser
+      } else {
+        return null
+      }
+    } else {
+      return null
     }
   }
 

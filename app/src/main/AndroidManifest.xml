@@ -44,6 +44,7 @@
       android:label="@string/title_activity_login" />
     <activity
       android:name=".activities.SettingsActivity"
+      android:parentActivityName=".activities.FieldworkListActivity"
       android:label="@string/title_activity_settings"></activity>
   </application>
 
