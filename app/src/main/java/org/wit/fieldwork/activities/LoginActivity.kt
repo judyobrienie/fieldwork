@@ -24,23 +24,38 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
+import kotlinx.android.synthetic.main.activity_fieldwork.*
 
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_settings.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
+import org.wit.fieldwork.main.MainApp
+
+
+import org.wit.fieldwork.models.UserModel
 
 /**
  * A login screen that offers login via email/password.
  */
-class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
+class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> , AnkoLogger{
   /**
    * Keep track of the login task to ensure we can cancel it if requested.
    */
   private var mAuthTask: UserLoginTask? = null
+  lateinit var app: MainApp
+  var user = UserModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
+    app = application as MainApp
+
+
+
+
     // Set up the login form.
     populateAutoComplete()
     password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
@@ -102,13 +117,33 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
       return
     }
 
-    // Reset errors.
-    email.error = null
-    password.error = null
 
     // Store values at the time of the login attempt.
     val emailStr = email.text.toString()
     val passwordStr = password.text.toString()
+
+    //Setting the User email and Password
+    user.email = emailStr
+    user.password = passwordStr
+    user.name = emailStr
+    app.users.create(user)
+
+
+
+    //Adding user to strings dynamically
+    //val res = resources
+   //var text = getString(R.string.userEmail, emailStr)
+
+    info("CHECKING USER CREATED :"  +  user.email)
+    info("CHECKING USER CREATED :"  +  user.password)
+    info("ARRAY :" + app.users.toString())
+
+
+
+    // Reset errors.
+    email.error = null
+    password.error = null
+
 
     var cancel = false
     var focusView: View? = null
@@ -261,7 +296,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             // Account exists, return true if the password matches.
             it[1] == mPassword
           }
-          ?: true
+          ?: false
     }
 
     override fun onPostExecute(success: Boolean?) {
@@ -272,7 +307,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         val intent = Intent(baseContext, FieldworkListActivity::class.java)
         startActivity(intent)
-        toast("You are Signed in Successfully")
+        toast("signing in successfully")
 
       } else {
         password.error = getString(R.string.error_incorrect_password)

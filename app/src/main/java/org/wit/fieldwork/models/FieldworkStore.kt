@@ -7,6 +7,10 @@ interface FieldworkStore {
   // to allow us to edit
   fun update(fieldwork: FieldworkModel)
 
+
+
   // allow us to delete
   fun delete(fieldwork: FieldworkModel)
 }
+
+
