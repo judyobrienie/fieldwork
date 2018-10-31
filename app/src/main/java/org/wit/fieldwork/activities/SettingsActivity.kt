@@ -3,9 +3,11 @@ package org.wit.fieldwork.activities
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
 import org.wit.fieldwork.main.MainApp
@@ -53,4 +55,18 @@ class SettingsActivity : AppCompatActivity(), AnkoLogger {
     menuInflater.inflate(R.menu.menu_main, menu)
     return super.onCreateOptionsMenu(menu)
   }
+
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    when (item?.itemId) {
+      R.id.item_add -> startActivityForResult<FieldworkActivity>(0)
+    }
+    when (item?.itemId) {
+      R.id.item_logout -> finish()
+    }
+    when (item?.itemId) {
+      R.id.item_settings -> startActivityForResult<SettingsActivity>(0)
+    }
+    return super.onOptionsItemSelected(item)
+  }
+
 }

@@ -28,9 +28,11 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
     btnLogin.setOnClickListener {
       user.email = userEmail.text.toString()
       user.password = userPassword.text.toString()
+      user.name = userEmail.text.toString()
 
       if (user.email.isNotEmpty() && user.password.isNotEmpty()) {
         val foundUser = app.users.authenticate(user.email, user.password)
+        val foundEmail = app.users.findByEmail(user.email)
 
         // Check if user exists
         if (foundUser != null) {
