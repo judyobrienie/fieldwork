@@ -139,8 +139,6 @@ info("images: " + readImageFromPath(this, fieldwork.images.get(0)))
   fun onCheckboxClicked(view: View) {
     if (view is CheckBox) {
       val checked: Boolean = view.isChecked
-
-
     }
   }
 

@@ -68,6 +68,14 @@
       android:textColor="@color/colorPrimary"
       android:textSize="16sp" />
 
+
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/title_places_visited"
+      android:textSize="15dp" />
+
   </LinearLayout>
 
 </RelativeLayout>

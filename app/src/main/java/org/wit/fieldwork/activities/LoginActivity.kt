@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
     toolbarLogin.title = title
-    setSupportActionBar(toolbarLogin)
+
     app = application as MainApp
 
     app.users.findAll().forEach { info("User: $it\n") }
@@ -63,9 +63,5 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
     }
   }
 
-  // Inflate the menu
-  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.menu_main, menu)
-    return super.onCreateOptionsMenu(menu)
-  }
+
 }
