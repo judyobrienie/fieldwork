@@ -38,15 +38,27 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
         if (foundUser != null) {
           app.loggedInUser = foundUser
           startActivityForResult(intentFor<FieldworkListActivity>(), 0)
+        } else {
+          toast("Invalid credentials")
         }
+      }
+    }
         // Otherwise create a new user
-        else {
+    btnNewUser.setOnClickListener {
+      user.email = userEmail.text.toString()
+      user.password = userPassword.text.toString()
+      user.name = userEmail.text.toString()
+
+      if (user.email.isNotEmpty() && user.password.isNotEmpty()) {
+        val foundEmail = app.users.findByEmail(user.email)
+        if (!foundEmail) {
           app.users.create(user)
           app.loggedInUser = user
           startActivityForResult(intentFor<FieldworkListActivity>(), 0)
         }
-      } else {
-        toast("Invalid credentials")
+        else{
+          toast("Email already registered")
+        }
       }
     }
   }
