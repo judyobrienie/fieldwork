@@ -45,8 +45,6 @@ class FieldworkActivity : AppCompatActivity(), AnkoLogger {
     //set new toobar
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
-
-
     supportActionBar!!.title = "Go Back"
     supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
@@ -117,9 +115,6 @@ info("images: " + readImageFromPath(this, fieldwork.images.get(0)))
       fieldwork.title = fieldworkTitle.text.toString()
       fieldwork.description = fieldworkDescription.text.toString()
 
-      
-
-
       if (fieldwork.title.isNotEmpty()) {
         if (edit) {
           btnAdd.setText(R.string.button_saveFieldwork)
@@ -144,17 +139,6 @@ info("images: " + readImageFromPath(this, fieldwork.images.get(0)))
   fun onCheckboxClicked(view: View) {
     if (view is CheckBox) {
       val checked: Boolean = view.isChecked
-
-      when (view.id) {
-        R.id.checkbox_meat -> {
-          if (checked) {
-            // Put some meat on the sandwich
-          } else {
-            // Remove the meat
-          }
-        }
-
-      }
     }
   }
 

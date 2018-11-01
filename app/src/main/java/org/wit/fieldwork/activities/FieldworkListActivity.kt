@@ -58,7 +58,9 @@ class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
     }
     when (item?.itemId) {
       R.id.item_logout -> finish()
-
+    }
+    when (item?.itemId) {
+      R.id.item_settings -> startActivityForResult<SettingsActivity>(0)
     }
     return super.onOptionsItemSelected(item)
   }
