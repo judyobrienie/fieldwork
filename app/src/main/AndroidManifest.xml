@@ -44,8 +44,12 @@
       android:label="@string/title_activity_login" />
     <activity
       android:name=".activities.SettingsActivity"
-      android:parentActivityName=".activities.FieldworkListActivity"
-      android:label="@string/title_activity_settings"></activity>
+      android:label="@string/title_activity_settings"
+      android:parentActivityName=".activities.FieldworkListActivity" />
+    <activity
+      android:name=".activities.FieldworkMapsActivity"
+      android:label="@string/title_activity_fieldwork_maps"
+      android:theme="@style/AppTheme"></activity>
   </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package org.wit.fieldwork.models
 
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.coroutines.experimental.bg
 import org.jetbrains.anko.info
 
 var lastId = 0L
@@ -9,13 +10,24 @@ internal fun getId(): Long {
   return lastId++
 }
 
+
+
+
 class FieldworkMemStore : FieldworkStore, AnkoLogger {
+
+
+  override fun findById(id: Long): FieldworkModel {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 
   val fieldworks = ArrayList<FieldworkModel>()
 
   override fun findAll(): List<FieldworkModel> {
     return fieldworks
   }
+
+
+
 
 
   override fun create(fieldwork: FieldworkModel) {

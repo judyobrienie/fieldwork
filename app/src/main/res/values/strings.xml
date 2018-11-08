@@ -1,4 +1,4 @@
-<resources >
+<resources>
   <string name="app_name">Atlas of Hillforts</string>
   <string name="hint_fieldworkTitle">Hillfort Name</string>
   <string name="hint_fieldworkDescription">Hillfort Description</string>
@@ -20,16 +20,10 @@
 
 
 
-
-
+  <string name="title_activity_settings">Settings</string>
   <!-- Strings related to Settings -->
-  <string name="title_places_visited">No Of Places Visited</string>
 
-
-
-
-
-
+  <string name="title_activity_fieldwork_maps">Map of All Fieldworks</string>
 
 
 </resources>

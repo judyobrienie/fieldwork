@@ -2,6 +2,8 @@ package org.wit.fieldwork.models
 
 interface FieldworkStore {
   fun findAll(): List<FieldworkModel>
+  fun findById(id:Long) : FieldworkModel
+
   fun create(fieldwork: FieldworkModel)
 
   // to allow us to edit
@@ -11,6 +13,8 @@ interface FieldworkStore {
 
   // allow us to delete
   fun delete(fieldwork: FieldworkModel)
+
+
 }
 
 

@@ -19,6 +19,13 @@ fun generateRandomId(): Long {
 
 class FieldworkJSONStore : FieldworkStore, AnkoLogger {
 
+
+  override fun findById(id: Long): FieldworkModel {
+    var foundFieldwork : FieldworkModel = fieldworks.find { p -> p.id == id }!!
+    return foundFieldwork
+
+  }
+
   val context: Context
   var fieldworks = mutableListOf<FieldworkModel>()
 
