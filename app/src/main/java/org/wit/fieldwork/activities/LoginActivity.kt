@@ -41,6 +41,8 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
         } else {
           toast("Invalid credentials")
         }
+
+
       }
     }
         // Otherwise create a new user
