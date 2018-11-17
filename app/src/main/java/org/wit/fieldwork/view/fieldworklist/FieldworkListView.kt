@@ -1,48 +1,32 @@
-package org.wit.fieldwork.activities
+package org.wit.fieldwork.view.fieldworklist
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.*
 import org.wit.fieldwork.R
-import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
 import kotlinx.android.synthetic.main.activity_fieldwork_list.*
-import kotlinx.android.synthetic.main.card_fieldwork.view.*
-import org.jetbrains.anko.*
-import org.wit.fieldwork.adapters.FieldworkAdapter
-import org.wit.fieldwork.adapters.FieldworkListener
 
 
-class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
+class FieldworkListView : AppCompatActivity(), FieldworkListener {
 
-  lateinit var app: MainApp
-
-  private fun loadFieldworks() {
-    showFieldworks(app.fieldworks.findAll())
-  }
-
-  fun showFieldworks (fieldworks: List<FieldworkModel>) {
-    recyclerView.adapter = FieldworkAdapter(fieldworks, this)
-    recyclerView.adapter?.notifyDataSetChanged()
-  }
+  lateinit var presenter: FieldworkListPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork_list)
-    app = application as MainApp
-
     toolbarMain.title = title
     setSupportActionBar(toolbarMain)
 
-
+    presenter = FieldworkListPresenter(this)
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    loadFieldworks()
+    recyclerView.adapter = FieldworkAdapter(presenter.getFieldoworks(), this)
+    recyclerView.adapter?.notifyDataSetChanged()
   }
+
 
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,28 +36,22 @@ class FieldworkListActivity : AppCompatActivity(), FieldworkListener {
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
-      R.id.item_add -> startActivityForResult<FieldworkActivity>(0)
-      R.id.item_map -> startActivity<FieldworkMapsActivity>()
-    }
-    when (item?.itemId) {
+      R.id.item_add -> presenter.doAddFieldwork()
+      R.id.item_map -> presenter.doShowFieldworksMap()
       R.id.item_logout -> finish()
-    }
-    when (item?.itemId) {
-      R.id.item_settings -> startActivityForResult<SettingsActivity>(0)
+      R.id.item_settings -> presenter.doGetSettings()
     }
     return super.onOptionsItemSelected(item)
   }
 
 
 
-
-
   override fun onFieldworkClick(fieldwork: FieldworkModel) {
-    startActivityForResult(intentFor<FieldworkActivity>().putExtra("hillfort_edit",fieldwork), 0)
+    presenter.doEditFieldwork(fieldwork)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    loadFieldworks()
+    recyclerView.adapter?.notifyDataSetChanged()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }

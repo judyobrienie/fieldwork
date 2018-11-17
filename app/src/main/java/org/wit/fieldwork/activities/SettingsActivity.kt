@@ -12,6 +12,7 @@ import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.UserModel
+import org.wit.fieldwork.view.fieldwork.FieldworkView
 
 
 class SettingsActivity : AppCompatActivity(), AnkoLogger {
@@ -58,7 +59,7 @@ class SettingsActivity : AppCompatActivity(), AnkoLogger {
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
-      R.id.item_add -> startActivityForResult<FieldworkActivity>(0)
+      R.id.item_add -> startActivityForResult<FieldworkView>(0)
     }
     when (item?.itemId) {
       R.id.item_logout -> finish()
