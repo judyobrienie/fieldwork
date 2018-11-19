@@ -1,30 +1,29 @@
-package org.wit.fieldwork.view.fieldworklist
+package org.wit.fieldwork.views.fieldworklist
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import org.wit.fieldwork.R
 import org.wit.fieldwork.models.FieldworkModel
 import kotlinx.android.synthetic.main.activity_fieldwork_list.*
+import org.wit.fieldwork.views.BaseView
 
 
-class FieldworkListView : AppCompatActivity(), FieldworkListener {
+class FieldworkListView : BaseView(), FieldworkListener {
 
   lateinit var presenter: FieldworkListPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork_list)
-    toolbarMain.title = title
-    setSupportActionBar(toolbarMain)
+    init(toolbarMain)
 
-    presenter = FieldworkListPresenter(this)
+    presenter = initPresenter(FieldworkListPresenter(this)) as FieldworkListPresenter
+
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = FieldworkAdapter(presenter.getFieldoworks(), this)
-    recyclerView.adapter?.notifyDataSetChanged()
+    presenter.loadFieldworks()
   }
 
 
@@ -51,7 +50,7 @@ class FieldworkListView : AppCompatActivity(), FieldworkListener {
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    recyclerView.adapter?.notifyDataSetChanged()
+    presenter.loadFieldworks()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }

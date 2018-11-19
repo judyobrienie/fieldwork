@@ -1,4 +1,4 @@
-package org.wit.fieldwork.view.fieldworklist;
+package org.wit.fieldwork.views.fieldworklist;
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package org.wit.fieldwork.view.editlocation
+package org.wit.fieldwork.views.editlocation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

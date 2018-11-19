@@ -1,19 +1,14 @@
-package org.wit.fieldwork.view.map
+package org.wit.fieldwork.views.map
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_fieldwork_maps.*
 import kotlinx.android.synthetic.main.content_fieldwork_maps.*
 import org.wit.fieldwork.R
 import org.wit.fieldwork.helpers.readImageFromPath
-import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.FieldworkModel
-import org.wit.fieldwork.view.map.FieldworkMapPresenter
 
 class FieldworkMapView : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
 

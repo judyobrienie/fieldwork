@@ -1,4 +1,4 @@
-package org.wit.fieldwork.view.editlocation
+package org.wit.fieldwork.views.editlocation
 
 import android.app.Activity
 import android.content.Intent

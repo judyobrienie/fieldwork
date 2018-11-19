@@ -30,16 +30,16 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".view.fieldwork.FieldworkView"
-      android:parentActivityName=".view.fieldworklist.FieldworkListView" />
-    <activity android:name=".view.fieldworklist.FieldworkListView" />
+      android:name=".views.fieldwork.FieldworkView"
+      android:parentActivityName=".views.fieldworklist.FieldworkListView" />
+    <activity android:name=".views.fieldworklist.FieldworkListView" />
 
     <meta-data
       android:name="com.google.android.geo.API_KEY"
       android:value="@string/google_maps_key" />
 
     <activity
-      android:name=".view.editlocation.EditLocationView"
+      android:name=".views.editlocation.EditLocationView"
       android:label="@string/title_activity_maps" />
     <activity
       android:name=".activities.LoginActivity"
@@ -47,9 +47,9 @@
     <activity
       android:name=".activities.SettingsActivity"
       android:label="@string/title_activity_settings"
-      android:parentActivityName=".view.fieldworklist.FieldworkListView" />
+      android:parentActivityName=".views.fieldworklist.FieldworkListView" />
     <activity
-      android:name=".view.map.FieldworkMapView"
+      android:name=".views.map.FieldworkMapView"
       android:label="@string/title_activity_fieldwork_maps"
       android:theme="@style/AppTheme"></activity>
   </application>

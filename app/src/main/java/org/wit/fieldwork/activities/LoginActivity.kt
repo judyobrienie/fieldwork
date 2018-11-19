@@ -10,7 +10,7 @@ import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.UserModel
-import org.wit.fieldwork.view.fieldworklist.FieldworkListView
+import org.wit.fieldwork.views.fieldworklist.FieldworkListView
 
 class LoginActivity : AppCompatActivity(), AnkoLogger {
   lateinit var app: MainApp

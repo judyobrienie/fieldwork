@@ -1,4 +1,4 @@
-package org.wit.fieldwork.view.map
+package org.wit.fieldwork.views.map
 
 
 import com.google.android.gms.maps.CameraUpdateFactory

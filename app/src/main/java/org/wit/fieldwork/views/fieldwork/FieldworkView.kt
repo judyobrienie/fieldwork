@@ -1,7 +1,6 @@
-package org.wit.fieldwork.view.fieldwork
+package org.wit.fieldwork.views.fieldwork
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,12 +8,12 @@ import kotlinx.android.synthetic.main.activity_fieldwork.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
-import org.wit.fieldwork.R.id.item_save
 import org.wit.fieldwork.helpers.readImageFromPath
 import org.wit.fieldwork.models.FieldworkModel
+import org.wit.fieldwork.views.BaseView
 
 
-class FieldworkView : AppCompatActivity(), AnkoLogger {
+class FieldworkView : BaseView(), AnkoLogger {
 
   lateinit var presenter: FieldworkPresenter
   var fieldwork = FieldworkModel()
@@ -22,12 +21,14 @@ class FieldworkView : AppCompatActivity(), AnkoLogger {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork)
-    toolbarAdd.title = title
-    setSupportActionBar(toolbarAdd)
-    supportActionBar!!.title = "Go Back"
-    supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-    presenter = FieldworkPresenter(this)
+    init(toolbarAdd)
+
+   // setSupportActionBar(toolbarAdd)
+  //  supportActionBar!!.title = "Go Back"
+   // supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+    presenter = initPresenter (FieldworkPresenter(this)) as FieldworkPresenter
 
     chooseImage.setOnClickListener { presenter.doSelectImage() }
 
@@ -36,7 +37,7 @@ class FieldworkView : AppCompatActivity(), AnkoLogger {
   }
 
 
-  fun showFieldwork(fieldwork: FieldworkModel) {
+  override fun showFieldwork(fieldwork: FieldworkModel) {
     fieldworkTitle.setText(fieldwork.title)
     fieldworkDescription.setText(fieldwork.description)
     fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.image))
@@ -50,7 +51,7 @@ class FieldworkView : AppCompatActivity(), AnkoLogger {
 
 override fun onCreateOptionsMenu(menu: Menu): Boolean {
   menuInflater.inflate(R.menu.menu_fieldworkactivity, menu)
-  if (presenter.edit) menu.getItem(0).setVisible(true)
+ // if (presenter.edit) menu.getItem(0).setVisible(true)
   return super.onCreateOptionsMenu(menu)
 }
 

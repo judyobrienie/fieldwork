@@ -12,7 +12,7 @@ import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.UserModel
-import org.wit.fieldwork.view.fieldwork.FieldworkView
+import org.wit.fieldwork.views.fieldwork.FieldworkView
 
 
 class SettingsActivity : AppCompatActivity(), AnkoLogger {
