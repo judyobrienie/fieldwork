@@ -6,6 +6,7 @@ import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import org.jetbrains.anko.AnkoLogger
+import org.wit.fieldwork.activities.SettingsActivity
 
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.views.editlocation.EditLocationView
@@ -31,6 +32,7 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.FIELDWORK -> intent = Intent(this, FieldworkView::class.java)
       VIEW.MAPS -> intent = Intent(this, FieldworkMapView::class.java)
       VIEW.LIST -> intent = Intent(this, FieldworkListView::class.java)
+      VIEW.SETTINGS -> intent = Intent(this, SettingsActivity::class.java)
 
     }
     if (key != "") {

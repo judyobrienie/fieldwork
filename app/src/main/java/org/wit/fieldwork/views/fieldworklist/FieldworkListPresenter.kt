@@ -1,7 +1,5 @@
 
 package org.wit.fieldwork.views.fieldworklist
-
-import org.wit.fieldwork.activities.SettingsActivity
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.views.BasePresenter
 import org.wit.fieldwork.views.BaseView

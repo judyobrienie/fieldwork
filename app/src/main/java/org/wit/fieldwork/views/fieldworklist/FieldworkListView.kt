@@ -44,6 +44,11 @@ class FieldworkListView : BaseView(), FieldworkListener {
   }
 
 
+  override fun showFieldworks(fieldworks: List<FieldworkModel>) {
+    recyclerView.adapter = FieldworkAdapter(fieldworks, this)
+    recyclerView.adapter?.notifyDataSetChanged()
+  }
+
 
   override fun onFieldworkClick(fieldwork: FieldworkModel) {
     presenter.doEditFieldwork(fieldwork)

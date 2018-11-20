@@ -29,9 +29,9 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
     fieldwork.title = title
     fieldwork.description = description
       if (edit) {
-        app.fieldworks.update(fieldwork)
+        app.fieldworks.update(fieldwork.copy())
       } else {
-        app.fieldworks.create(fieldwork)
+        app.fieldworks.create(fieldwork.copy())
       }
       view?.finish()
     }
