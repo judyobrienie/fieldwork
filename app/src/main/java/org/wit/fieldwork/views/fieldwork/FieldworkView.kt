@@ -33,11 +33,6 @@ class FieldworkView : BaseView(), AnkoLogger {
       it.setOnMapClickListener { presenter.doSetLocation() }
     }
 
-
-   // setSupportActionBar(toolbarAdd)
-  //  supportActionBar!!.title = "Go Back"
-   // supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
     presenter = initPresenter (FieldworkPresenter(this)) as FieldworkPresenter
 
     chooseImage.setOnClickListener { presenter.doSelectImage() }
