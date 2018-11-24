@@ -1,7 +1,9 @@
 package org.wit.fieldwork.models
 
 interface FieldworkStore {
+
   fun findAll(): List<FieldworkModel>
+
   fun findById(id:Long) : FieldworkModel
 
   fun create(fieldwork: FieldworkModel)

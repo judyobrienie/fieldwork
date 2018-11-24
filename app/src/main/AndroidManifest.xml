@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   package="org.wit.fieldwork">
 
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -17,7 +18,8 @@
     android:largeHeap="true"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    tools:ignore="GoogleAppIndexingWarning">
     <activity android:name=".activities.SplashScreenActivity">
       android:theme="@style/Splashtheme">
       android:noHistory="true">
@@ -28,16 +30,16 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".activities.FieldworkActivity"
-      android:parentActivityName=".activities.FieldworkListActivity" />
-    <activity android:name=".activities.FieldworkListActivity" />
+      android:name=".views.fieldwork.FieldworkView"
+      android:parentActivityName=".views.fieldworklist.FieldworkListView" />
+    <activity android:name=".views.fieldworklist.FieldworkListView" />
 
     <meta-data
       android:name="com.google.android.geo.API_KEY"
       android:value="@string/google_maps_key" />
 
     <activity
-      android:name=".activities.MapsActivity"
+      android:name=".views.editlocation.EditLocationView"
       android:label="@string/title_activity_maps" />
     <activity
       android:name=".activities.LoginActivity"
@@ -45,9 +47,9 @@
     <activity
       android:name=".activities.SettingsActivity"
       android:label="@string/title_activity_settings"
-      android:parentActivityName=".activities.FieldworkListActivity" />
+      android:parentActivityName=".views.fieldworklist.FieldworkListView" />
     <activity
-      android:name=".activities.FieldworkMapsActivity"
+      android:name=".views.map.FieldworkMapView"
       android:label="@string/title_activity_fieldwork_maps"
       android:theme="@style/AppTheme"></activity>
   </application>

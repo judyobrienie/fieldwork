@@ -2,7 +2,6 @@ package org.wit.fieldwork.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -11,6 +10,7 @@ import org.jetbrains.anko.toast
 import org.wit.fieldwork.R
 import org.wit.fieldwork.main.MainApp
 import org.wit.fieldwork.models.UserModel
+import org.wit.fieldwork.views.fieldworklist.FieldworkListView
 
 class LoginActivity : AppCompatActivity(), AnkoLogger {
   lateinit var app: MainApp
@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
         // Check if user exists
         if (foundUser != null) {
           app.loggedInUser = foundUser
-          startActivityForResult(intentFor<FieldworkListActivity>(), 0)
+          startActivityForResult(intentFor<FieldworkListView>(), 0)
         } else {
           toast("Invalid credentials")
         }
@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
         if (!foundEmail) {
           app.users.create(user)
           app.loggedInUser = user
-          startActivityForResult(intentFor<FieldworkListActivity>(), 0)
+          startActivityForResult(intentFor<FieldworkListView>(), 0)
         }
         else{
           toast("Email already registered")

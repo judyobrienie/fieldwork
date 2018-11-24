@@ -3,7 +3,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".activities.FieldworkActivity">
+  tools:context=".views.fieldwork.FieldworkView">
 
   <android.support.design.widget.AppBarLayout
     android:id="@+id/appBarLayout"
@@ -61,16 +61,6 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/fieldworkTitle" />
 
-    <Button
-      android:id="@+id/btnAdd"
-      android:layout_width="365dp"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:text="@string/button_addFieldwork"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/fieldworkDescription" />
 
     <Button
       android:id="@+id/chooseImage"
@@ -78,8 +68,8 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
       android:text="@string/button_addImage"
-      app:layout_constraintStart_toStartOf="@+id/btnAdd"
-      app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
+      app:layout_constraintStart_toStartOf="@+id/fieldworkDescription"
+      app:layout_constraintTop_toBottomOf="@+id/fieldworkDescription" />
 
     <Button
       android:id="@+id/fieldworkLocation"
@@ -89,10 +79,10 @@
       android:layout_marginStart="8dp"
       android:layout_marginTop="8dp"
       android:text="@string/button_location"
-      app:layout_constraintEnd_toEndOf="@+id/btnAdd"
+      app:layout_constraintEnd_toEndOf="@+id/fieldworkDescription"
       app:layout_constraintHorizontal_bias="1.0"
       app:layout_constraintStart_toEndOf="@+id/chooseImage"
-      app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
+      app:layout_constraintTop_toBottomOf="@+id/fieldworkDescription" />
 
     <HorizontalScrollView
       android:layout_width="match_parent"
