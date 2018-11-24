@@ -29,8 +29,8 @@ class FieldworkView : BaseView(), AnkoLogger {
 
     mapView.onCreate(savedInstanceState);
     mapView.getMapAsync {
-      map = it
-      presenter.doConfigureMap(map)
+      presenter.doConfigureMap(it)
+      it.setOnMapClickListener { presenter.doSetLocation() }
     }
 
 
@@ -42,7 +42,6 @@ class FieldworkView : BaseView(), AnkoLogger {
 
     chooseImage.setOnClickListener { presenter.doSelectImage() }
 
-    fieldworkLocation.setOnClickListener { presenter.doSetLocation() }
 
   }
 
@@ -54,7 +53,8 @@ class FieldworkView : BaseView(), AnkoLogger {
     if (fieldwork.image != null) {
       chooseImage.setText(R.string.button_saveImage)
     }
-
+    lat.setText("%.6f".format(fieldwork.lat))
+    lng.setText("%.6f".format(fieldwork.lng))
   }
 
 

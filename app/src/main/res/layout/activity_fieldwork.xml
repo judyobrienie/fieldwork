@@ -64,24 +64,14 @@
 
     <Button
       android:id="@+id/chooseImage"
-      android:layout_width="150dp"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
-      android:text="@string/button_addImage"
-      app:layout_constraintStart_toStartOf="@+id/fieldworkDescription"
-      app:layout_constraintTop_toBottomOf="@+id/fieldworkDescription" />
-
-    <Button
-      android:id="@+id/fieldworkLocation"
-      android:layout_width="150dp"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
       android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:text="@string/button_location"
-      app:layout_constraintEnd_toEndOf="@+id/fieldworkDescription"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toEndOf="@+id/chooseImage"
+      android:layout_marginEnd="8dp"
+      android:text="@string/button_addImage"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/fieldworkDescription" />
 
 
@@ -120,6 +110,47 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/fieldworkImage" />
 
+    <TextView
+      android:id="@+id/textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:text="Lat:"
+      app:layout_constraintBaseline_toBaselineOf="@+id/lat"
+      app:layout_constraintStart_toEndOf="@+id/fieldworkTitle" />
+
+    <TextView
+      android:id="@+id/textView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:text="Lng:"
+      app:layout_constraintBaseline_toBaselineOf="@+id/lng"
+      app:layout_constraintStart_toEndOf="@+id/fieldworkDescription" />
+
+    <TextView
+      android:id="@+id/lat"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="72dp"
+      android:layout_marginEnd="8dp"
+      android:text="00.000000"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/textView"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+      android:id="@+id/lng"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginEnd="8dp"
+      android:text="00.000000"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/textView2"
+      app:layout_constraintTop_toBottomOf="@+id/lat" />
 
 
   </android.support.constraint.ConstraintLayout>
