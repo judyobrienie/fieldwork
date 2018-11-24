@@ -17,7 +17,7 @@ import org.wit.fieldwork.views.BaseView
 class FieldworkView : BaseView(), AnkoLogger {
 
   lateinit var presenter: FieldworkPresenter
-  lateinit var map: GoogleMap
+
 
   var fieldwork = FieldworkModel()
 
@@ -27,13 +27,15 @@ class FieldworkView : BaseView(), AnkoLogger {
 
     init(toolbarAdd)
 
+    presenter = initPresenter (FieldworkPresenter(this)) as FieldworkPresenter
+
     mapView.onCreate(savedInstanceState);
     mapView.getMapAsync {
       presenter.doConfigureMap(it)
       it.setOnMapClickListener { presenter.doSetLocation() }
     }
 
-    presenter = initPresenter (FieldworkPresenter(this)) as FieldworkPresenter
+
 
     chooseImage.setOnClickListener { presenter.doSelectImage() }
 
@@ -56,7 +58,6 @@ class FieldworkView : BaseView(), AnkoLogger {
 
 override fun onCreateOptionsMenu(menu: Menu): Boolean {
   menuInflater.inflate(R.menu.menu_fieldworkactivity, menu)
- // if (presenter.edit) menu.getItem(0).setVisible(true)
   return super.onCreateOptionsMenu(menu)
 }
 
