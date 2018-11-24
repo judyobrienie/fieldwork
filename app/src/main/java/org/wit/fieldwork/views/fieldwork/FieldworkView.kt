@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_fieldwork.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
@@ -16,6 +17,8 @@ import org.wit.fieldwork.views.BaseView
 class FieldworkView : BaseView(), AnkoLogger {
 
   lateinit var presenter: FieldworkPresenter
+  lateinit var map: GoogleMap
+
   var fieldwork = FieldworkModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +26,13 @@ class FieldworkView : BaseView(), AnkoLogger {
     setContentView(R.layout.activity_fieldwork)
 
     init(toolbarAdd)
+
+    mapView.onCreate(savedInstanceState);
+    mapView.getMapAsync {
+      map = it
+      presenter.doConfigureMap(map)
+    }
+
 
    // setSupportActionBar(toolbarAdd)
   //  supportActionBar!!.title = "Go Back"
@@ -83,6 +93,30 @@ override fun onCreateOptionsMenu(menu: Menu): Boolean {
   }
 
 
+  override fun onDestroy() {
+    super.onDestroy()
+    mapView.onDestroy()
+  }
+
+  override fun onLowMemory() {
+    super.onLowMemory()
+    mapView.onLowMemory()
+  }
+
+  override fun onPause() {
+    super.onPause()
+    mapView.onPause()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    mapView.onResume()
+  }
+
+  override fun onSaveInstanceState(outState: Bundle?) {
+    super.onSaveInstanceState(outState)
+    mapView.onSaveInstanceState(outState)
+  }
 
 
 
