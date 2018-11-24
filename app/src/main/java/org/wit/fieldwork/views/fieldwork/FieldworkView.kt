@@ -17,8 +17,6 @@ import org.wit.fieldwork.views.BaseView
 class FieldworkView : BaseView(), AnkoLogger {
 
   lateinit var presenter: FieldworkPresenter
-
-
   var fieldwork = FieldworkModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<android.support.constraint.ConstraintLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +6,7 @@
   android:layout_height="match_parent"
   tools:context=".views.fieldwork.FieldworkView">
 
-  <com.google.android.material.appbar.AppBarLayout
+  <android.support.design.widget.AppBarLayout
     android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,11 +21,9 @@
       android:layout_height="wrap_content"
       app:titleTextColor="@color/colorPrimary" />
 
+  </android.support.design.widget.AppBarLayout>
 
-
-  </com.google.android.material.appbar.AppBarLayout>
-
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="600dp"
     android:layout_marginEnd="8dp"
@@ -60,7 +57,7 @@
       android:id="@+id/textView2"
       android:layout_width="32dp"
       android:layout_height="19dp"
-      android:layout_marginStart="72dp"
+      android:layout_marginStart="62dp"
       android:text="Lng:"
       app:layout_constraintBaseline_toBaselineOf="@+id/lat"
       app:layout_constraintStart_toEndOf="@+id/lat" />
@@ -85,6 +82,5 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
+  </android.support.constraint.ConstraintLayout>
