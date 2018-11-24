@@ -57,7 +57,7 @@
       android:id="@+id/textView2"
       android:layout_width="32dp"
       android:layout_height="19dp"
-      android:layout_marginStart="62dp"
+      android:layout_marginStart="52dp"
       android:text="Lng:"
       app:layout_constraintBaseline_toBaselineOf="@+id/lat"
       app:layout_constraintStart_toEndOf="@+id/lat" />
