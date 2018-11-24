@@ -1,6 +1,5 @@
 package org.wit.fieldwork.views.editlocation
 
-import android.app.Activity
 import android.content.Intent
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -8,9 +7,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.fieldwork.models.Location
+import org.wit.fieldwork.views.BasePresenter
+import org.wit.fieldwork.views.BaseView
 
 
-class MapsPresenter(val view: EditLocationView) {
+class EditLocationPresenter(view: BaseView) : BasePresenter(view) {
 
   var location = Location()
 
@@ -18,10 +19,10 @@ class MapsPresenter(val view: EditLocationView) {
     location = view.intent.extras.getParcelable<Location>("location")
   }
 
-  fun initMap(map: GoogleMap) {
+  fun doConfigureMap(map: GoogleMap) {
     val loc = LatLng(location.lat, location.lng)
     val options = MarkerOptions()
-        .title("Fieldwork")
+        .title("Hillfort")
         .snippet("GPS : " + loc.toString())
         .draggable(true)
         .position(loc)
@@ -29,17 +30,16 @@ class MapsPresenter(val view: EditLocationView) {
     map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
   }
 
-  fun doUpdateLocation(lat: Double, lng: Double, zoom: Float) {
+  fun doUpdateLocation(lat: Double, lng: Double) {
     location.lat = lat
     location.lng = lng
-    location.zoom = zoom
   }
 
-  fun doOnBackPressed() {
+  fun doSave() {
     val resultIntent = Intent()
     resultIntent.putExtra("location", location)
-    view.setResult(Activity.RESULT_OK, resultIntent)
-    view.finish()
+    view?.setResult(0, resultIntent)
+    view?.finish()
   }
 
   fun doUpdateMarker(marker: Marker) {
@@ -47,4 +47,3 @@ class MapsPresenter(val view: EditLocationView) {
     marker.setSnippet("GPS : " + loc.toString())
   }
 }
-

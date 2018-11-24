@@ -6,20 +6,16 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import org.wit.fieldwork.main.MainApp
+import org.wit.fieldwork.models.FieldworkModel
+import org.wit.fieldwork.views.BasePresenter
+import org.wit.fieldwork.views.BaseView
 
-class FieldworkMapPresenter(val view: FieldworkMapView) {
+class FieldworkMapPresenter(view: BaseView) : BasePresenter(view) {
 
-  var app: MainApp
 
-  init {
-    app = view.application as MainApp
-  }
-
-  fun doPopulateMap(map: GoogleMap) {
+  fun doPopulateMap(map: GoogleMap, fieldworks: List<FieldworkModel>) {
     map.uiSettings.setZoomControlsEnabled(true)
-    map.setOnMarkerClickListener(view)
-    app.fieldworks.findAll().forEach {
+    fieldworks.forEach {
       val loc = LatLng(it.lat, it.lng)
       val options = MarkerOptions().title(it.title).position(loc)
       map.addMarker(options).tag = it.id
@@ -30,6 +26,11 @@ class FieldworkMapPresenter(val view: FieldworkMapView) {
   fun doMarkerSelected(marker: Marker) {
     val tag = marker.tag as Long
     val fieldwork = app.fieldworks.findById(tag)
-    if (fieldwork != null) view.showFieldwork(fieldwork)
+    if (fieldwork != null) view?.showFieldwork(fieldwork)
+
+  }
+
+  fun loadPlacemarks() {
+    view?.showFieldworks(app.fieldworks.findAll())
   }
 }
