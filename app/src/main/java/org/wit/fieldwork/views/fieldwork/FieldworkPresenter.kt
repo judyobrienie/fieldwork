@@ -3,12 +3,15 @@ package org.wit.fieldwork.views.fieldwork
 import android.annotation.SuppressLint
 import android.content.Intent
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.fieldwork.helpers.checkLocationPermissions
+import org.wit.fieldwork.helpers.createDefaultLocationRequest
 import org.wit.fieldwork.helpers.isPermissionGranted
 import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.models.FieldworkModel
@@ -20,7 +23,7 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
 
   var map: GoogleMap? = null
   var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
-
+  val locationRequest = createDefaultLocationRequest()
   var fieldwork = FieldworkModel()
   var defaultLocation = Location(52.245696, -7.139102, 15f)
   var edit = false
@@ -71,7 +74,11 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
   @SuppressLint("MissingPermission")
   fun doSetCurrentLocation() {
     locationService.lastLocation.addOnSuccessListener {
-      locationUpdate(it.latitude, it.longitude)
+      if (it != null) {
+        locationUpdate(it.latitude, it.longitude)
+      }
+      else {locationUpdate(defaultLocation.lat, defaultLocation.lng)
+      }
     }
   }
 
@@ -104,6 +111,22 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
     view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(fieldwork.lat, fieldwork.lng, fieldwork.zoom))
   }
 
+
+
+  @SuppressLint("MissingPermission")
+  fun doResartLocationUpdates() {
+    var locationCallback = object : LocationCallback() {
+      override fun onLocationResult(locationResult: LocationResult?) {
+        if (locationResult != null && locationResult.locations != null) {
+          val l = locationResult.locations.last()
+          locationUpdate(l.latitude, l.longitude)
+        }
+      }
+    }
+    if (!edit) {
+      locationService.requestLocationUpdates(locationRequest, locationCallback, null)
+    }
+  }
 
     override fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
       when (requestCode) {
