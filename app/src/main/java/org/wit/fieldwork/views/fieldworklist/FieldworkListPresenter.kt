@@ -19,6 +19,10 @@ class FieldworkListPresenter(view: BaseView) : BasePresenter(view) {
     view?.navigateTo(VIEW.MAPS)
   }
 
+  fun doLogout() {
+    view?.navigateTo(VIEW.LOGIN)
+  }
+
 
  fun doGetSettings() {
     view?.navigateTo(VIEW.SETTINGS)

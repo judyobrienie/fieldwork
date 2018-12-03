@@ -20,12 +20,11 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
-    <activity android:name=".activities.SplashScreenActivity">
-      android:theme="@style/Splashtheme">
+    <activity android:name=".views.splashscreen.SplashscreenView">
+     android:theme="@style/Splashtheme">
       android:noHistory="true">
-      <intent-filter>
+      <intent-filter>-
         <action android:name="android.intent.action.MAIN" />
-
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
@@ -41,9 +40,13 @@
     <activity
       android:name=".views.editlocation.EditLocationView"
       android:label="@string/title_activity_maps" />
+
     <activity
-      android:name=".activities.LoginActivity"
-      android:label="@string/title_activity_login" />
+      android:name=".views.login.LoginView"
+      android:label="@string/title_activity_login"/>
+    
+
+
     <activity
       android:name=".activities.SettingsActivity"
       android:label="@string/title_activity_settings"

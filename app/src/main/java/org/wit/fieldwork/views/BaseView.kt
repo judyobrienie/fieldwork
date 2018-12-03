@@ -12,13 +12,15 @@ import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.views.editlocation.EditLocationView
 import org.wit.fieldwork.views.map.FieldworkMapView
 import org.wit.fieldwork.views.fieldwork.FieldworkView
+import org.wit.fieldwork.views.fieldworklist.FieldworkListPresenter
 import org.wit.fieldwork.views.fieldworklist.FieldworkListView
+import org.wit.fieldwork.views.login.LoginView
 
 val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  LOCATION, FIELDWORK, MAPS, LIST, SETTINGS
+  LOCATION, FIELDWORK, MAPS, LIST, SETTINGS, LOGIN
 }
 
 open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -33,6 +35,7 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.MAPS -> intent = Intent(this, FieldworkMapView::class.java)
       VIEW.LIST -> intent = Intent(this, FieldworkListView::class.java)
       VIEW.SETTINGS -> intent = Intent(this, SettingsActivity::class.java)
+      VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
 
     }
     if (key != "") {
@@ -50,6 +53,8 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     toolbar.title = title
     setSupportActionBar(toolbar)
   }
+
+
 
   override fun onDestroy() {
     basePresenter?.onDestroy()

@@ -37,7 +37,7 @@ class FieldworkListView : BaseView(), FieldworkListener {
     when (item?.itemId) {
       R.id.item_add -> presenter.doAddFieldwork()
       R.id.item_map -> presenter.doShowFieldworksMap()
-      R.id.item_logout -> finish()
+      R.id.item_logout -> presenter.doLogout()
       R.id.item_settings -> presenter.doGetSettings()
     }
     return super.onOptionsItemSelected(item)
