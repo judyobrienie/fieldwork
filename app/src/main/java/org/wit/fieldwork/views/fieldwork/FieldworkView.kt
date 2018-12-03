@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_fieldwork.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
@@ -24,15 +25,18 @@ class FieldworkView : BaseView(), AnkoLogger {
 
     init(toolbarAdd)
 
-   // setSupportActionBar(toolbarAdd)
-  //  supportActionBar!!.title = "Go Back"
-   // supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
     presenter = initPresenter (FieldworkPresenter(this)) as FieldworkPresenter
+
+    mapView.onCreate(savedInstanceState);
+    mapView.getMapAsync {
+      presenter.doConfigureMap(it)
+      it.setOnMapClickListener { presenter.doSetLocation() }
+    }
+
+
 
     chooseImage.setOnClickListener { presenter.doSelectImage() }
 
-    fieldworkLocation.setOnClickListener { presenter.doSetLocation() }
 
   }
 
@@ -44,14 +48,14 @@ class FieldworkView : BaseView(), AnkoLogger {
     if (fieldwork.image != null) {
       chooseImage.setText(R.string.button_saveImage)
     }
-
+    lat.setText("%.6f".format(fieldwork.lat))
+    lng.setText("%.6f".format(fieldwork.lng))
   }
 
 
 
 override fun onCreateOptionsMenu(menu: Menu): Boolean {
   menuInflater.inflate(R.menu.menu_fieldworkactivity, menu)
- // if (presenter.edit) menu.getItem(0).setVisible(true)
   return super.onCreateOptionsMenu(menu)
 }
 
@@ -83,6 +87,30 @@ override fun onCreateOptionsMenu(menu: Menu): Boolean {
   }
 
 
+  override fun onDestroy() {
+    super.onDestroy()
+    mapView.onDestroy()
+  }
+
+  override fun onLowMemory() {
+    super.onLowMemory()
+    mapView.onLowMemory()
+  }
+
+  override fun onPause() {
+    super.onPause()
+    mapView.onPause()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    mapView.onResume()
+  }
+
+  override fun onSaveInstanceState(outState: Bundle?) {
+    super.onSaveInstanceState(outState)
+    mapView.onSaveInstanceState(outState)
+  }
 
 
 
