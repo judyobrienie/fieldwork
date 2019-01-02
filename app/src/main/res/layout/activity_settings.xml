@@ -34,7 +34,7 @@
       android:textSize="25dp" />
 
     <android.support.design.widget.TextInputEditText
-      android:id="@+id/email"
+      android:id="@+id/useremail"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:inputType="textEmailAddress"
@@ -45,7 +45,7 @@
       android:textSize="16sp" />
 
     <android.support.design.widget.TextInputEditText
-      android:id="@+id/password"
+      android:id="@+id/userpassword"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:inputType="textPassword"

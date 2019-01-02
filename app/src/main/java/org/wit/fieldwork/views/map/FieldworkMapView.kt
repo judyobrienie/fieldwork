@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.activity_fieldwork_maps.*
-import kotlinx.android.synthetic.main.card_fieldwork.*
 import kotlinx.android.synthetic.main.content_fieldwork_maps.*
 import org.wit.fieldwork.R
 import org.wit.fieldwork.helpers.readImageFromPath
@@ -27,7 +26,7 @@ class FieldworkMapView : BaseView(), GoogleMap.OnMarkerClickListener {
     mapView.getMapAsync {
       map = it
       map.setOnMarkerClickListener(this)
-      presenter.loadPlacemarks()
+      presenter.loadFieldworks()
     }
   }
 

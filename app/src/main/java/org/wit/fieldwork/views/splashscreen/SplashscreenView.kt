@@ -1,26 +1,28 @@
-package org.wit.fieldwork.activities
-/* Tutorial followed here ->>>> https://www.youtube.com/watch?v=6tIBaMd3A64
-*/
+package org.wit.fieldwork.views.splashscreen
 
-import android.content.Intent
+
+
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import org.wit.fieldwork.R
-import org.wit.fieldwork.main.MainApp
+import org.wit.fieldwork.views.BaseView
 
-class SplashScreenActivity : AppCompatActivity() {
+
+class SplashscreenView : BaseView() {
+
+  lateinit var presenter: SplashScreenPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_splashscreen)
 
+    presenter = initPresenter(SplashScreenPresenter(this))as SplashScreenPresenter
+
     val background = object : Thread() {
       override fun run(){
         try {
           Thread.sleep(5000)
+          presenter.doGetLogin()
 
-          val intent = Intent(baseContext, LoginActivity::class.java)
-          startActivity(intent)
         }catch (e:Exception){
           e.printStackTrace()
         }

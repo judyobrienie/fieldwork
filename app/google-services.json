@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "741322618369",
+    "firebase_url": "https://fieldwork-b4415.firebaseio.com",
+    "project_id": "fieldwork-b4415",
+    "storage_bucket": "fieldwork-b4415.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741322618369:android:124cb34460f2c4bf",
+        "android_client_info": {
+          "package_name": "org.wit.fieldwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741322618369-rs5qfkb3gq7jmtj0dmmiocstsnehljne.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.wit.fieldwork",
+            "certificate_hash": "7b8b298476cb9506c6ea09da8de1f1e2cb63626f"
+          }
+        },
+        {
+          "client_id": "741322618369-bb9omk9621g2rn19gla2d9sc56vcneu7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKdyWB4-41cCvsCJ4qwEHqfk6Htwujep8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741322618369-bb9omk9621g2rn19gla2d9sc56vcneu7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

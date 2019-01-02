@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_fieldwork.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
@@ -105,6 +104,7 @@ override fun onCreateOptionsMenu(menu: Menu): Boolean {
   override fun onResume() {
     super.onResume()
     mapView.onResume()
+    presenter.doRestartLocationUpdates()
   }
 
   override fun onSaveInstanceState(outState: Bundle?) {
