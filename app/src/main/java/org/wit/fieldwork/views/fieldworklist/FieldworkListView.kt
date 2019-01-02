@@ -17,7 +17,7 @@ class FieldworkListView : BaseView(), FieldworkListener {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork_list)
-    init(toolbarMain)
+    init(toolbarMain, false)
 
     presenter = initPresenter(FieldworkListPresenter(this)) as FieldworkListPresenter
 

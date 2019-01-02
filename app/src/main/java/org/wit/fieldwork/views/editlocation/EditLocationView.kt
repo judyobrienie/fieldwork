@@ -20,7 +20,7 @@ import org.wit.fieldwork.views.BaseView
     override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       setContentView(R.layout.activity_edit_location)
-      init(toolbarSaveMap)
+      init(toolbarSaveMap, false)
 
 
       presenter = initPresenter(EditLocationPresenter(this))as EditLocationPresenter

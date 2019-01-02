@@ -22,7 +22,7 @@ class FieldworkView : BaseView(), AnkoLogger {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fieldwork)
 
-    init(toolbarAdd)
+    init(toolbarAdd, false)
 
     presenter = initPresenter (FieldworkPresenter(this)) as FieldworkPresenter
 
