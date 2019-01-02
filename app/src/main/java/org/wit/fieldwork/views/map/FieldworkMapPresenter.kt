@@ -30,7 +30,7 @@ class FieldworkMapPresenter(view: BaseView) : BasePresenter(view) {
 
   }
 
-  fun loadPlacemarks() {
+  fun loadFieldworks() {
     view?.showFieldworks(app.fieldworks.findAll())
   }
 }

@@ -1,5 +1,6 @@
 
 package org.wit.fieldwork.views.fieldworklist
+import com.google.firebase.auth.FirebaseAuth
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.views.BasePresenter
 import org.wit.fieldwork.views.BaseView
@@ -19,9 +20,10 @@ class FieldworkListPresenter(view: BaseView) : BasePresenter(view) {
     view?.navigateTo(VIEW.MAPS)
   }
 
-  fun doLogout() {
-    view?.navigateTo(VIEW.LOGIN)
-  }
+    fun doLogout() {
+        FirebaseAuth.getInstance().signOut()
+        view?.navigateTo(VIEW.LOGIN)
+    }
 
 
  fun doGetSettings() {

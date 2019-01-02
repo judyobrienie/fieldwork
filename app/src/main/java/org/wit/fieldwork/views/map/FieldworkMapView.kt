@@ -26,7 +26,7 @@ class FieldworkMapView : BaseView(), GoogleMap.OnMarkerClickListener {
     mapView.getMapAsync {
       map = it
       map.setOnMarkerClickListener(this)
-      presenter.loadPlacemarks()
+      presenter.loadFieldworks()
     }
   }
 
