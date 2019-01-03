@@ -18,14 +18,14 @@ class FieldworkMapPresenter(view: BaseView) : BasePresenter(view) {
     fieldworks.forEach {
       val loc = LatLng(it.lat, it.lng)
       val options = MarkerOptions().title(it.title).position(loc)
-      map.addMarker(options).tag = it.id
+      map.addMarker(options).tag = it
       map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
     }
   }
 
   fun doMarkerSelected(marker: Marker) {
-    val tag = marker.tag as Long
-    val fieldwork = app.fieldworks.findById(tag)
+
+    val fieldwork = marker.tag as FieldworkModel
     if (fieldwork != null) view?.showFieldwork(fieldwork)
 
   }

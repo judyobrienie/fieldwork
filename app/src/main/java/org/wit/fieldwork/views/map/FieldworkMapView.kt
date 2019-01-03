@@ -1,9 +1,12 @@
 package org.wit.fieldwork.views.map
 
 import android.os.Bundle
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.activity_fieldwork_maps.*
+import kotlinx.android.synthetic.main.card_fieldwork.*
 import kotlinx.android.synthetic.main.content_fieldwork_maps.*
 import org.wit.fieldwork.R
 import org.wit.fieldwork.helpers.readImageFromPath
@@ -33,7 +36,7 @@ class FieldworkMapView : BaseView(), GoogleMap.OnMarkerClickListener {
  override fun showFieldwork(fieldwork: FieldworkModel) {
     currentTitle.text = fieldwork.title
     currentDescription.text = fieldwork.description
-    fieldworkImageView.setImageBitmap(readImageFromPath(this,fieldwork.image))
+     Glide.with(this).load(fieldwork.image).into(fieldworkImageView);
   }
 
 

@@ -28,7 +28,7 @@
 
 
     <ImageView
-      android:id="@+id/fieldworkImage"
+      android:id="@+id/fieldworkImageIcon"
       android:layout_width="64dp"
       android:layout_height="64dp"
       android:layout_alignParentRight="true"
