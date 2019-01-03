@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_fieldwork.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
@@ -43,12 +44,12 @@ class FieldworkView : BaseView(), AnkoLogger {
   override fun showFieldwork(fieldwork: FieldworkModel) {
     fieldworkTitle.setText(fieldwork.title)
     fieldworkDescription.setText(fieldwork.description)
-    fieldworkImage.setImageBitmap(readImageFromPath(this, fieldwork.image))
+    Glide.with(this).load(fieldwork.image).into(fieldworkImage);
     if (fieldwork.image != null) {
       chooseImage.setText(R.string.button_saveImage)
     }
-    lat.setText("%.6f".format(fieldwork.lat))
-    lng.setText("%.6f".format(fieldwork.lng))
+    lat.setText("%.6f".format(fieldwork.location.lat))
+    lng.setText("%.6f".format(fieldwork.location.lng))
   }
 
 
@@ -107,7 +108,7 @@ override fun onCreateOptionsMenu(menu: Menu): Boolean {
     presenter.doRestartLocationUpdates()
   }
 
-  override fun onSaveInstanceState(outState: Bundle?) {
+  override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
     mapView.onSaveInstanceState(outState)
   }

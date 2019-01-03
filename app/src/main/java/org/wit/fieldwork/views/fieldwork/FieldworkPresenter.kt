@@ -17,6 +17,8 @@ import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.models.Location
 import org.wit.fieldwork.views.*
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 
 
 class FieldworkPresenter(view: BaseView) : BasePresenter(view){
@@ -42,22 +44,21 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
   }
 
 
-  fun locationUpdate(lat: Double, lng: Double) {
-    fieldwork.lat = lat
-    fieldwork.lng = lng
-    fieldwork.zoom = 15f
+  fun locationUpdate(location: Location) {
+    fieldwork.location = location
+    fieldwork.location.zoom = 15f
     map?.clear()
     map?.uiSettings?.setZoomControlsEnabled(true)
-    val options = MarkerOptions().title(fieldwork.title).position(LatLng(fieldwork.lat, fieldwork.lng))
+    val options = MarkerOptions().title(fieldwork.title).position(LatLng(fieldwork.location.lat, fieldwork.location.lng))
     map?.addMarker(options)
-    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(fieldwork.lat, fieldwork.lng), fieldwork.zoom))
+    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(fieldwork.location.lat, fieldwork.location.lng), fieldwork.location.zoom))
     view?.showFieldwork(fieldwork)
   }
 
 
     fun doConfigureMap(m: GoogleMap) {
       map = m
-      locationUpdate(fieldwork.lat, fieldwork.lng)
+      locationUpdate(fieldwork.location)
     }
 
 
@@ -66,7 +67,7 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
         doSetCurrentLocation()
       } else {
         // permissions denied, so use the default location
-        locationUpdate(defaultLocation.lat, defaultLocation.lng)
+        locationUpdate(defaultLocation)
       }
     }
 
@@ -75,16 +76,17 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
   fun doSetCurrentLocation() {
     locationService.lastLocation.addOnSuccessListener {
       if (it != null) {
-        locationUpdate(it.latitude, it.longitude)
+        locationUpdate(Location(it.latitude, it.longitude))
       }
-      else {locationUpdate(defaultLocation.lat, defaultLocation.lng)
-      }
+
     }
   }
+
 
   fun doAddorSave(title: String, description: String) {
     fieldwork.title = title
     fieldwork.description = description
+    async(UI) {
       if (edit) {
         app.fieldworks.update(fieldwork.copy())
       } else {
@@ -92,15 +94,17 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
       }
       view?.finish()
     }
-
+  }
 
   fun doCancel() {
     view?.finish()
   }
 
   fun doDelete() {
-    app.fieldworks.delete(fieldwork)
-    view?.finish()
+    async(UI) {
+      app.fieldworks.delete(fieldwork)
+      view?.finish()
+    }
   }
 
   fun doSelectImage() {
@@ -108,7 +112,7 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
   }
 
   fun doSetLocation() {
-    view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(fieldwork.lat, fieldwork.lng, fieldwork.zoom))
+    view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(fieldwork.location.lat, fieldwork.location.lng, fieldwork.location.zoom))
   }
 
 
@@ -119,7 +123,7 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
       override fun onLocationResult(locationResult: LocationResult?) {
         if (locationResult != null && locationResult.locations != null) {
           val l = locationResult.locations.last()
-          locationUpdate(l.latitude, l.longitude)
+          locationUpdate(Location(l.latitude, l.longitude))
         }
       }
     }
@@ -138,10 +142,8 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
 
         LOCATION_REQUEST -> {
          val location = data.extras.getParcelable<Location>("location")
-            fieldwork.lat = location.lat
-            fieldwork.lng = location.lng
-            fieldwork.zoom = location.zoom
-            locationUpdate(fieldwork.lat, fieldwork.lng)
+            fieldwork.location = location
+            locationUpdate(location)
 
 
         }

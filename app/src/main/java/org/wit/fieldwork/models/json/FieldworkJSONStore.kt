@@ -1,4 +1,4 @@
-package org.wit.fieldwork.models
+package org.wit.fieldwork.models.json
 
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -7,6 +7,8 @@ import java.util.*
 import android.content.Context
 import com.google.gson.Gson
 import org.wit.fieldwork.helpers.*
+import org.wit.fieldwork.models.FieldworkModel
+import org.wit.fieldwork.models.FieldworkStore
 
 
 val JSON_FILE = "fieldworks.json"
@@ -20,7 +22,7 @@ fun generateRandomId(): Long {
 class FieldworkJSONStore : FieldworkStore, AnkoLogger {
 
 
-  override fun findById(id: Long): FieldworkModel {
+  suspend override fun findById(id: Long): FieldworkModel {
     var foundFieldwork : FieldworkModel = fieldworks.find { p -> p.id == id }!!
     return foundFieldwork
 
@@ -36,11 +38,11 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
     }
   }
 
-  override fun findAll(): MutableList<FieldworkModel> {
+  suspend override fun findAll(): MutableList<FieldworkModel> {
     return fieldworks
   }
 
-  override fun create(fieldwork: FieldworkModel) {
+  suspend override fun create(fieldwork: FieldworkModel) {
     fieldwork.id = generateRandomId()
     fieldworks.add(fieldwork)
     serialize()
@@ -48,15 +50,13 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
 
 
 
-  override fun update(fieldwork: FieldworkModel) {
+  suspend override fun update(fieldwork: FieldworkModel) {
     var foundFieldwork: FieldworkModel? = fieldworks.find { p -> p.id == fieldwork.id }
     if (foundFieldwork != null) {
       foundFieldwork.title = fieldwork.title
       foundFieldwork.description = fieldwork.description
-      foundFieldwork.images = fieldwork.images
-      foundFieldwork.lng = fieldwork.lng
-      foundFieldwork.lat = fieldwork.lat
-      foundFieldwork.zoom = fieldwork.zoom
+      foundFieldwork.image = fieldwork.image
+      foundFieldwork.location = fieldwork.location
     //add to file
       serialize()
     }
@@ -72,8 +72,12 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
     fieldworks = Gson().fromJson(jsonString, listType)
   }
 
-  override fun delete(fieldwork: FieldworkModel) {
+  suspend override fun delete(fieldwork: FieldworkModel) {
     fieldworks.remove(fieldwork)
     serialize()
+  }
+
+  override fun clear() {
+    fieldworks.clear()
   }
 }

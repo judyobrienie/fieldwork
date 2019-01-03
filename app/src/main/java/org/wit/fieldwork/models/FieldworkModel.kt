@@ -1,17 +1,19 @@
 package org.wit.fieldwork.models
 import android.net.Uri
 import android.os.Parcelable
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class FieldworkModel(var id: Long=0,
+@Entity
+data class FieldworkModel(@PrimaryKey(autoGenerate = true)var id: Long=0,
+                          var fbId : String = "",
                           var title: String = "",
                           var description: String = "",
                           var image: String = "",
-                          var images: MutableList<String> = ArrayList<String>(),
-                          var lat : Double = 0.0,
-                          var lng: Double = 0.0,
-                          var zoom: Float = 0f) : Parcelable
+                          @Embedded var location : Location = Location()): Parcelable
 
 
 @Parcelize

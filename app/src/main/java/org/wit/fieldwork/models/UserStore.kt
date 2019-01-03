@@ -3,14 +3,14 @@ package org.wit.fieldwork.models
 
 interface UserStore {
 
-  fun findAll(): List<UserModel>
-  fun create(userModel: UserModel)
+  suspend fun findAll(): List<UserModel>
+  suspend fun create(userModel: UserModel)
 
   // to allow us to edit
-  fun update(userModel: UserModel)
+  suspend fun update(userModel: UserModel)
 
   // allow us to delete
-  fun delete(userModel: UserModel)
+  suspend fun delete(userModel: UserModel)
 
   // check if a user exists
   fun findByEmail(email: String): Boolean

@@ -31,7 +31,9 @@
     <activity
       android:name=".views.fieldwork.FieldworkView"
       android:parentActivityName=".views.fieldworklist.FieldworkListView" />
-    <activity android:name=".views.fieldworklist.FieldworkListView" />
+    <activity android:name=".views.fieldworklist.FieldworkListView"
+    android:label="@string/title_activity_fieldwork_list"
+    android:launchMode="singleTop"/>
 
     <meta-data
       android:name="com.google.android.geo.API_KEY"
@@ -39,7 +41,11 @@
 
     <activity
       android:name=".views.editlocation.EditLocationView"
-      android:label="@string/title_activity_maps" />
+      android:label="@string/title_activity_fieldwork">
+    <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value=".views.fieldwork.FieldworkView" />
+  </activity>
 
     <activity
       android:name=".views.login.LoginView"
@@ -53,8 +59,13 @@
       android:parentActivityName=".views.fieldworklist.FieldworkListView" />
     <activity
       android:name=".views.map.FieldworkMapView"
-      android:label="@string/title_activity_fieldwork_maps"
-      android:theme="@style/AppTheme"></activity>
+      android:label="@string/title_activity_edit_location"
+      android:theme="@style/AppTheme">
+      <meta-data
+          android:name="android.support.PARENT_ACTIVITY"
+          android:value=".views.fieldwork.FieldworkView" />
+
+    </activity>
   </application>
 
 </manifest>

@@ -1,20 +1,25 @@
 package org.wit.fieldwork.models
 
+import com.google.firebase.auth.FirebaseAuth
+
 interface FieldworkStore {
 
-  fun findAll(): List<FieldworkModel>
+  suspend fun findAll(): List<FieldworkModel>
 
-  fun findById(id:Long) : FieldworkModel
+  suspend fun findById(id:Long) : FieldworkModel?
 
-  fun create(fieldwork: FieldworkModel)
+  suspend fun create(fieldwork: FieldworkModel)
 
   // to allow us to edit
-  fun update(fieldwork: FieldworkModel)
+  suspend fun update(fieldwork: FieldworkModel)
 
+  fun clear()
 
 
   // allow us to delete
-  fun delete(fieldwork: FieldworkModel)
+ suspend fun delete(fieldwork: FieldworkModel)
+
+
 
 
 }
