@@ -1,10 +1,9 @@
 package org.wit.fieldwork.main
 
 import android.app.Application
-import kotlinx.android.synthetic.main.activity_fieldwork.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.wit.fieldwork.models.*
+import org.wit.fieldwork.models.json.FieldworkJSONStore
 
 class MainApp : Application(), AnkoLogger {
 

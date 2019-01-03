@@ -1,8 +1,9 @@
-package org.wit.fieldwork.models
+package org.wit.fieldwork.models.mem
 
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.coroutines.experimental.bg
 import org.jetbrains.anko.info
+import org.wit.fieldwork.models.FieldworkModel
+import org.wit.fieldwork.models.FieldworkStore
 
 var lastId = 0L
 
@@ -31,7 +32,7 @@ class FieldworkMemStore : FieldworkStore, AnkoLogger {
 
 
   override fun create(fieldwork: FieldworkModel) {
-    fieldwork.id=getId()
+    fieldwork.id= getId()
     fieldworks.add(fieldwork)
     logAll()
   }

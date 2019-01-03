@@ -1,4 +1,4 @@
-package org.wit.fieldwork.models
+package org.wit.fieldwork.models.json
 
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -7,6 +7,8 @@ import java.util.*
 import android.content.Context
 import com.google.gson.Gson
 import org.wit.fieldwork.helpers.*
+import org.wit.fieldwork.models.FieldworkModel
+import org.wit.fieldwork.models.FieldworkStore
 
 
 val JSON_FILE = "fieldworks.json"

@@ -19,6 +19,10 @@
   <string name="button_logout">logout</string>
   <string name="button_settings">settings</string>
 
+  <string name="title_activity_fieldwork_list">Fieldworks</string>
+  <string name="title_activity_fieldwork">Fieldwork</string>
+  <string name="title_activity_edit_location">Fieldwork</string>
+
 
 
 

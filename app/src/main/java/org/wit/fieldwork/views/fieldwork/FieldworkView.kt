@@ -108,7 +108,7 @@ override fun onCreateOptionsMenu(menu: Menu): Boolean {
     presenter.doRestartLocationUpdates()
   }
 
-  override fun onSaveInstanceState(outState: Bundle?) {
+  override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
     mapView.onSaveInstanceState(outState)
   }
