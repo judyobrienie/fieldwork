@@ -18,10 +18,10 @@ class FieldworkMapPresenter(view: BaseView) : BasePresenter(view) {
   fun doPopulateMap(map: GoogleMap, fieldworks: List<FieldworkModel>) {
     map.uiSettings.setZoomControlsEnabled(true)
     fieldworks.forEach {
-      val loc = LatLng(it.lat, it.lng)
+      val loc = LatLng(it.location.lat, it.location.lng)
       val options = MarkerOptions().title(it.title).position(loc)
       map.addMarker(options).tag = it
-      map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+      map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.location.zoom))
     }
   }
 

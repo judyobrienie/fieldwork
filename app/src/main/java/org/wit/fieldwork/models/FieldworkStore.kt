@@ -1,5 +1,7 @@
 package org.wit.fieldwork.models
 
+import com.google.firebase.auth.FirebaseAuth
+
 interface FieldworkStore {
 
   suspend fun findAll(): List<FieldworkModel>
@@ -16,6 +18,8 @@ interface FieldworkStore {
 
   // allow us to delete
  suspend fun delete(fieldwork: FieldworkModel)
+
+
 
 
 }

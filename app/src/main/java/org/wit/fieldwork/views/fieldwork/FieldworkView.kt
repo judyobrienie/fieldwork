@@ -48,8 +48,8 @@ class FieldworkView : BaseView(), AnkoLogger {
     if (fieldwork.image != null) {
       chooseImage.setText(R.string.button_saveImage)
     }
-    lat.setText("%.6f".format(fieldwork.lat))
-    lng.setText("%.6f".format(fieldwork.lng))
+    lat.setText("%.6f".format(fieldwork.location.lat))
+    lng.setText("%.6f".format(fieldwork.location.lng))
   }
 
 

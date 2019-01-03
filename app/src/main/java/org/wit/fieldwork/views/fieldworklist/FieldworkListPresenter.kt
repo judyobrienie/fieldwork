@@ -24,6 +24,7 @@ class FieldworkListPresenter(view: BaseView) : BasePresenter(view) {
 
     fun doLogout() {
         FirebaseAuth.getInstance().signOut()
+        app.fieldworks.clear()
         view?.navigateTo(VIEW.LOGIN)
     }
 
