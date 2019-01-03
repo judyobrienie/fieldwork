@@ -54,6 +54,11 @@ class FieldworkMemStore : FieldworkStore, AnkoLogger {
   }
 
 
+  fun clear() {
+    fieldworks.clear()
+  }
+
+
   fun logAll() {
     fieldworks.forEach{ info("${it}") }
   }
