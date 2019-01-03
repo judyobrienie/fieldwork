@@ -17,6 +17,8 @@ import org.wit.fieldwork.helpers.showImagePicker
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.models.Location
 import org.wit.fieldwork.views.*
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 
 
 class FieldworkPresenter(view: BaseView) : BasePresenter(view){
@@ -85,6 +87,7 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
   fun doAddorSave(title: String, description: String) {
     fieldwork.title = title
     fieldwork.description = description
+    async(UI) {
       if (edit) {
         app.fieldworks.update(fieldwork.copy())
       } else {
@@ -92,15 +95,17 @@ class FieldworkPresenter(view: BaseView) : BasePresenter(view){
       }
       view?.finish()
     }
-
+  }
 
   fun doCancel() {
     view?.finish()
   }
 
   fun doDelete() {
-    app.fieldworks.delete(fieldwork)
-    view?.finish()
+    async(UI) {
+      app.fieldworks.delete(fieldwork)
+      view?.finish()
+    }
   }
 
   fun doSelectImage() {

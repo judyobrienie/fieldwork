@@ -22,7 +22,7 @@ fun generateRandomId(): Long {
 class FieldworkJSONStore : FieldworkStore, AnkoLogger {
 
 
-  override fun findById(id: Long): FieldworkModel {
+  suspend override fun findById(id: Long): FieldworkModel {
     var foundFieldwork : FieldworkModel = fieldworks.find { p -> p.id == id }!!
     return foundFieldwork
 
@@ -38,11 +38,11 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
     }
   }
 
-  override fun findAll(): MutableList<FieldworkModel> {
+  suspend override fun findAll(): MutableList<FieldworkModel> {
     return fieldworks
   }
 
-  override fun create(fieldwork: FieldworkModel) {
+  suspend override fun create(fieldwork: FieldworkModel) {
     fieldwork.id = generateRandomId()
     fieldworks.add(fieldwork)
     serialize()
@@ -50,7 +50,7 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
 
 
 
-  override fun update(fieldwork: FieldworkModel) {
+  suspend override fun update(fieldwork: FieldworkModel) {
     var foundFieldwork: FieldworkModel? = fieldworks.find { p -> p.id == fieldwork.id }
     if (foundFieldwork != null) {
       foundFieldwork.title = fieldwork.title
@@ -74,7 +74,7 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
     fieldworks = Gson().fromJson(jsonString, listType)
   }
 
-  override fun delete(fieldwork: FieldworkModel) {
+  suspend override fun delete(fieldwork: FieldworkModel) {
     fieldworks.remove(fieldwork)
     serialize()
   }

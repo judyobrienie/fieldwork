@@ -34,18 +34,18 @@ class UserJSONStore : UserStore, AnkoLogger {
     }
   }
 
-  override fun findAll(): MutableList<UserModel> {
+  suspend override fun findAll(): MutableList<UserModel> {
     return users
   }
 
-  override fun create(user: UserModel) {
+  suspend override fun create(user: UserModel) {
     user.idUser = generateRandomIds()
     users.add(user)
     serialize()
   }
 
 
-  override fun update(user: UserModel) {
+  suspend override fun update(user: UserModel) {
     var foundUser: UserModel? = users.find { p -> p.idUser == user.idUser }
     if (foundUser != null) {
       foundUser.name = user.name
@@ -90,7 +90,7 @@ class UserJSONStore : UserStore, AnkoLogger {
     users = Gson().fromJson(jsonString, listTypes)
   }
 
-  override fun delete(user: UserModel) {
+  suspend override fun delete(user: UserModel) {
     users.remove(user)
     serialize()
   }

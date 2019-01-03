@@ -9,6 +9,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.views.BasePresenter
 import org.wit.fieldwork.views.BaseView
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 
 class FieldworkMapPresenter(view: BaseView) : BasePresenter(view) {
 
@@ -31,6 +33,8 @@ class FieldworkMapPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun loadFieldworks() {
-    view?.showFieldworks(app.fieldworks.findAll())
+    async(UI) {
+      view?.showFieldworks(app.fieldworks.findAll())
+    }
   }
 }

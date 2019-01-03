@@ -5,6 +5,8 @@ import org.wit.fieldwork.models.FieldworkModel
 import org.wit.fieldwork.views.BasePresenter
 import org.wit.fieldwork.views.BaseView
 import org.wit.fieldwork.views.VIEW
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 
 class FieldworkListPresenter(view: BaseView) : BasePresenter(view) {
 
@@ -30,7 +32,9 @@ class FieldworkListPresenter(view: BaseView) : BasePresenter(view) {
     view?.navigateTo(VIEW.SETTINGS)
   }
 
-  fun loadFieldworks() {
-    view?.showFieldworks(app.fieldworks.findAll())
+   fun loadFieldworks() {
+      async(UI) {
+          view?.showFieldworks(app.fieldworks.findAll())
+      }
   }
 }

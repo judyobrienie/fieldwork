@@ -21,11 +21,11 @@ class UserMemStore : UserStore, AnkoLogger {
 
   val users = ArrayList<UserModel>()
 
-  override fun findAll(): List<UserModel> {
+  override suspend fun findAll(): List<UserModel> {
     return users
   }
 
-  override fun create(user: UserModel) {
+  override suspend fun create(user: UserModel) {
     user.idUser=getid()
     users.add(user)
     logAll()
@@ -34,7 +34,7 @@ class UserMemStore : UserStore, AnkoLogger {
 
 
 
-  override fun update(user: UserModel) {
+  override suspend fun update(user: UserModel) {
     var foundUser: UserModel? = users.find { p -> p.idUser == user.idUser }
     if (foundUser != null) {
       foundUser.name = user.name
@@ -45,7 +45,7 @@ class UserMemStore : UserStore, AnkoLogger {
     }
   }
 
-  override fun delete(user: UserModel) {
+  override suspend fun delete(user: UserModel) {
     users.remove(user)
   }
 

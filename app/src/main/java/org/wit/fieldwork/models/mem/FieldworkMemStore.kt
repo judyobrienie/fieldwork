@@ -17,13 +17,13 @@ internal fun getId(): Long {
 class FieldworkMemStore : FieldworkStore, AnkoLogger {
 
 
-  override fun findById(id: Long): FieldworkModel {
+  suspend override fun findById(id: Long): FieldworkModel {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
   val fieldworks = ArrayList<FieldworkModel>()
 
-  override fun findAll(): List<FieldworkModel> {
+  suspend override fun findAll(): List<FieldworkModel> {
     return fieldworks
   }
 
@@ -31,13 +31,13 @@ class FieldworkMemStore : FieldworkStore, AnkoLogger {
 
 
 
-  override fun create(fieldwork: FieldworkModel) {
+  suspend override fun create(fieldwork: FieldworkModel) {
     fieldwork.id= getId()
     fieldworks.add(fieldwork)
     logAll()
   }
 
-  override fun update(fieldwork: FieldworkModel) {
+  suspend override fun update(fieldwork: FieldworkModel) {
     var foundFieldwork: FieldworkModel? = fieldworks.find { p -> p.id == fieldwork.id }
     if (foundFieldwork != null) {
       foundFieldwork.title = fieldwork.title
@@ -50,7 +50,7 @@ class FieldworkMemStore : FieldworkStore, AnkoLogger {
     }
   }
 
-  override fun delete(fieldwork: FieldworkModel) {
+  suspend override fun delete(fieldwork: FieldworkModel) {
     fieldworks.remove(fieldwork)
   }
 
