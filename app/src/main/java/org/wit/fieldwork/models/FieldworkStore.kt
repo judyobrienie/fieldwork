@@ -11,6 +11,7 @@ interface FieldworkStore {
   // to allow us to edit
   fun update(fieldwork: FieldworkModel)
 
+  fun clear()
 
 
   // allow us to delete

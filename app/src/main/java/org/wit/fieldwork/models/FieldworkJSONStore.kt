@@ -53,7 +53,7 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
     if (foundFieldwork != null) {
       foundFieldwork.title = fieldwork.title
       foundFieldwork.description = fieldwork.description
-      foundFieldwork.images = fieldwork.images
+      foundFieldwork.image = fieldwork.image
       foundFieldwork.lng = fieldwork.lng
       foundFieldwork.lat = fieldwork.lat
       foundFieldwork.zoom = fieldwork.zoom
@@ -75,5 +75,9 @@ class FieldworkJSONStore : FieldworkStore, AnkoLogger {
   override fun delete(fieldwork: FieldworkModel) {
     fieldworks.remove(fieldwork)
     serialize()
+  }
+
+  override fun clear() {
+    fieldworks.clear()
   }
 }

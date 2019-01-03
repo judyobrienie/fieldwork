@@ -54,7 +54,7 @@ class FieldworkMemStore : FieldworkStore, AnkoLogger {
   }
 
 
-  fun clear() {
+  override fun clear() {
     fieldworks.clear()
   }
 
